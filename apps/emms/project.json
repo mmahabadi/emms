@@ -48,7 +48,8 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "emms:build",
-        "hmr": true
+        "hmr": true,
+        "proxyConfig": "apps/emms/proxy.conf.json"
       },
       "configurations": {
         "development": {
