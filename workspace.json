@@ -4,6 +4,7 @@
   "projects": {
     "api": "apps/api",
     "emms": "apps/emms",
-    "emms-e2e": "apps/emms-e2e"
+    "emms-e2e": "apps/emms-e2e",
+    "ui-kit": "libs/ui-kit"
   }
 }
