@@ -15,7 +15,20 @@
         "main": "apps/emms/src/main.tsx",
         "polyfills": "apps/emms/src/polyfills.ts",
         "tsConfig": "apps/emms/tsconfig.app.json",
-        "assets": ["apps/emms/src/favicon.ico", "apps/emms/src/assets"],
+        "assets": [
+          "apps/emms/src/favicon.ico",
+          "apps/emms/src/assets",
+          {
+            "input": "libs/ui-kit/assets/images",
+            "glob": "**/*",
+            "output": "media"
+          },
+          {
+            "input": "libs/ui-kit/src/lib/assets/sass",
+            "glob": "**/*",
+            "output": "@ui-kit"
+          }
+        ],
         "styles": ["apps/emms/src/styles.scss"],
         "scripts": [],
         "webpackConfig": "@nrwl/react/plugins/webpack"
