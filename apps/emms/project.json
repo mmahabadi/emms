@@ -22,14 +22,9 @@
             "input": "libs/ui-kit/assets/images",
             "glob": "**/*",
             "output": "media"
-          },
-          {
-            "input": "libs/ui-kit/src/lib/assets/sass",
-            "glob": "**/*",
-            "output": "@ui-kit"
           }
         ],
-        "styles": ["apps/emms/src/styles.scss"],
+        "styles": ["libs/ui-kit/assets/css/style.rtl.css", "apps/emms/src/styles.scss"],
         "scripts": [],
         "webpackConfig": "@nrwl/react/plugins/webpack"
       },

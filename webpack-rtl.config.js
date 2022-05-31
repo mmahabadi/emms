@@ -13,7 +13,7 @@ const RtlCssPlugin = require('rtlcss-webpack-plugin')
 
 // global variables
 const rootPath = path.resolve(__dirname)
-const distPath = rootPath + 'libs/ui-kit/assets'
+const distPath = rootPath + '/libs/ui-kit/assets'
 
 const entries = {
   'css/style': './libs/ui-kit/src/lib/assets/sass/style.scss',
