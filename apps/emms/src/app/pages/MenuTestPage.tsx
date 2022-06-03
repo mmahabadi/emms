@@ -698,7 +698,7 @@ const MenuTestPage: FC = () => {
                     value=''
                     placeholder='Search...'
                     id='kt_header_search_input'
-                    onChange={() => {}}
+                    onChange={() => {return;}}
                   />
                   <span
                     className='position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-1'

@@ -6,10 +6,10 @@ import '@formatjs/intl-relativetimeformat/locale-data/en'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import enMessages from './messages/en.json';
+import faMessages from './messages/fa.json';
 
 const allMessages = {
-  en: enMessages
+  fa: faMessages
 }
 
 const I18nProvider: FC<any> = ({children}) => {

@@ -8,8 +8,7 @@
 import {FC} from 'react'
 import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
 import {PrivateRoutes} from './PrivateRoutes'
-import {ErrorsPage} from '../../../../../libs/ui-kit/src/lib/modules/errors/ErrorsPage'
-import {Logout, AuthPage, useAuth} from '../../../../../libs/ui-kit/src/lib/modules/auth'
+import {Logout, AuthPage, useAuth, ErrorsPage} from '@emms/ui-kit'
 import App from '../App';
 
 

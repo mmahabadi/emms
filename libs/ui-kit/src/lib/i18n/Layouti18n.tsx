@@ -4,10 +4,10 @@ const {REACT_APP_I18N_CONFIG_KEY} = process.env;
 const I18N_CONFIG_KEY = REACT_APP_I18N_CONFIG_KEY || 'i18nConfig'
 
 type Props = {
-  selectedLang: 'en'
+  selectedLang: 'fa'
 }
 const initialState: Props = {
-  selectedLang: 'en',
+  selectedLang: 'fa',
 }
 
 function getConfig(): Props {

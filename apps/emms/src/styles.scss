@@ -1,4 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import "fonts";
+
 body{
-  direction: rtl!important;
+  direction: rtl !important;
+  font-family: iranyekan  !important;
+}
+h1, h2, h3, h4, h5, h6,input, textarea {
+	font-family: iranyekan !important;
+}
+
+.text-right{
+  text-align: right;
+}
+.text-left{
+  text-align: left;
+}
+.ltr{
+  direction: ltr;
 }

@@ -22,6 +22,11 @@
             "input": "libs/ui-kit/assets/images",
             "glob": "**/*",
             "output": "media"
+          },
+          {
+            "input": "libs/ui-kit/assets/fonts",
+            "glob": "**/*",
+            "output": "fonts"
           }
         ],
         "styles": ["libs/ui-kit/assets/css/style.rtl.css", "apps/emms/src/styles.scss"],

@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
-import {I18nProvider, LayoutProvider, LayoutSplashScreen, MasterInit} from "@emms/ui-kit";
+import {I18nProvider, LayoutProvider, LayoutSplashScreen, MasterInit, AuthInit} from "@emms/ui-kit";
 import {Outlet} from 'react-router-dom';
-import {AuthInit} from "../../../../libs/ui-kit/src/lib/modules/auth";
 
 
 export function App() {
