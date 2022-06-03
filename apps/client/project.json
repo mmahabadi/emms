@@ -1,6 +1,6 @@
 {
   "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
-  "sourceRoot": "apps/emms/src",
+  "sourceRoot": "apps/client/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -9,15 +9,15 @@
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
-        "outputPath": "dist/apps/emms",
-        "index": "apps/emms/src/index.html",
+        "outputPath": "dist/apps/client",
+        "index": "apps/client/src/index.html",
         "baseHref": "/",
-        "main": "apps/emms/src/main.tsx",
-        "polyfills": "apps/emms/src/polyfills.ts",
-        "tsConfig": "apps/emms/tsconfig.app.json",
+        "main": "apps/client/src/main.tsx",
+        "polyfills": "apps/client/src/polyfills.ts",
+        "tsConfig": "apps/client/tsconfig.app.json",
         "assets": [
-          "apps/emms/src/favicon.ico",
-          "apps/emms/src/assets",
+          "apps/client/src/favicon.ico",
+          "apps/client/src/assets",
           {
             "input": "libs/ui-kit/assets/images",
             "glob": "**/*",
@@ -29,7 +29,7 @@
             "output": "fonts"
           }
         ],
-        "styles": ["libs/ui-kit/assets/css/style.rtl.css", "apps/emms/src/styles.scss"],
+        "styles": ["libs/ui-kit/assets/css/style.rtl.css", "apps/client/src/styles.scss"],
         "scripts": [],
         "webpackConfig": "@nrwl/react/plugins/webpack"
       },
@@ -43,8 +43,8 @@
         "production": {
           "fileReplacements": [
             {
-              "replace": "apps/emms/src/environments/environment.ts",
-              "with": "apps/emms/src/environments/environment.prod.ts"
+              "replace": "apps/client/src/environments/environment.ts",
+              "with": "apps/client/src/environments/environment.prod.ts"
             }
           ],
           "optimization": true,
@@ -60,16 +60,16 @@
       "executor": "@nrwl/web:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "emms:build",
+        "buildTarget": "client:build",
         "hmr": true,
-        "proxyConfig": "apps/emms/proxy.conf.json"
+        "proxyConfig": "apps/client/proxy.conf.json"
       },
       "configurations": {
         "development": {
-          "buildTarget": "emms:build:development"
+          "buildTarget": "client:build:development"
         },
         "production": {
-          "buildTarget": "emms:build:production",
+          "buildTarget": "client:build:production",
           "hmr": false
         }
       }
@@ -78,14 +78,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/emms/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/client/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/emms"],
+      "outputs": ["coverage/apps/client"],
       "options": {
-        "jestConfig": "apps/emms/jest.config.ts",
+        "jestConfig": "apps/client/jest.config.ts",
         "passWithNoTests": true
       }
     }
