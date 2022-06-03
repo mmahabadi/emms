@@ -1,7 +1,4 @@
-export interface AuthModel {
-  api_token: string
-  refreshToken?: string
-}
+import {AuthModel} from "@emms/models";
 
 export interface UserAddressModel {
   addressLine: string

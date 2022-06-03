@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
+    "start": "nx run-many --parallel --target=serve --projects=api,client ",
+    "start:client": "nx run client:serve",
+    "start:api": "nx run api:serve",
     "build": "nx build",
     "test": "nx test",
     "rtl": "webpack --config webpack-rtl.config.js"

@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
+import {Module} from '@nestjs/common';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import {AppController} from './app.controller';
+import {AppService} from './app.service';
 import {ConfigModule} from "@nestjs/config";
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {Activity} from "./activity/activity.entity";
@@ -26,36 +26,36 @@ import {SkillModule} from "./skill/skill.module";
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-       TypeOrmModule.forRoot({
-         type: 'postgres',
-         host: process.env.NX_API_DB_HOST,
-         port: parseInt(<string>process.env.NX_API_DB_PORT),
-         username: process.env.NX_API_DB_USER,
-         password: process.env.NX_API_DB_PASS,
-         database: process.env.NX_API_DB_DATABASE,
-         autoLoadEntities: true,
-         synchronize: false,
-         "entities": [
-             Activity,
-             Asset,
-             AssetCat,
-             AssetIdentity,
-             Currency,
-             Goods,
-             Location,
-             Org,
-             Skill
-             ]
-       }),
-       AssetModule,
-       CurrencyModule,
-       OrgModule,
-       LocationModule,
-       ActivityModule,
-       AssetCatsModule,
-       AssetIdentityModule,
-       GoodsModule,
-       SkillModule,
+     TypeOrmModule.forRoot({
+       type: 'postgres',
+       host: process.env.NX_API_DB_HOST,
+       port: parseInt(<string>process.env.NX_API_DB_PORT),
+       username: process.env.NX_API_DB_USER,
+       password: process.env.NX_API_DB_PASS,
+       database: process.env.NX_API_DB_DATABASE,
+       autoLoadEntities: true,
+       synchronize: false,
+       "entities": [
+         Activity,
+         Asset,
+         AssetCat,
+         AssetIdentity,
+         Currency,
+         Goods,
+         Location,
+         Org,
+         Skill
+       ]
+     }),
+     AssetModule,
+     CurrencyModule,
+     OrgModule,
+     LocationModule,
+     ActivityModule,
+     AssetCatsModule,
+     AssetIdentityModule,
+     GoodsModule,
+     SkillModule
   ],
   controllers: [AppController],
   providers: [AppService],

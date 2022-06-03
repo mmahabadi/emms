@@ -1,5 +1,6 @@
 import axios from 'axios'
-import {AuthModel, UserModel} from './_models'
+import {UserModel} from './_models'
+import {AuthModel, LoginInputs} from "@emms/models";
 
 const {NX_REACT_APP_API_URL: API_URL} = process.env
 
@@ -9,11 +10,8 @@ export const REGISTER_URL = `${API_URL}/register`
 export const REQUEST_PASSWORD_URL = `${API_URL}/forgot_password`
 
 // Server should return AuthModel
-export function login(email: string, password: string) {
-  return axios.post<AuthModel>(LOGIN_URL, {
-    email,
-    password,
-  })
+export function login(input: LoginInputs) {
+  return axios.post<AuthModel>(LOGIN_URL, input);
 }
 
 // Server should return AuthModel
@@ -34,9 +32,9 @@ export function register(
 }
 
 // Server should return object => { result: boolean } (Is Email in DB)
-export function requestPassword(email: string) {
+export function requestPassword(username: string) {
   return axios.post<{result: boolean}>(REQUEST_PASSWORD_URL, {
-    email,
+    username
   })
 }
 

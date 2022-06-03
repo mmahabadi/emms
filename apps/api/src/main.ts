@@ -3,10 +3,10 @@
  * This is only a minimal backend to get started.
  */
 
-import { Logger } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
+import {Logger} from '@nestjs/common';
+import {NestFactory} from '@nestjs/core';
 
-import { AppModule } from './app/app.module';
+import {AppModule} from './app/app.module';
 import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
 
 async function bootstrap() {
@@ -23,7 +23,8 @@ async function bootstrap() {
 
   const globalPrefix = process.env.NX_API_PREFIX || 'api';
   app.setGlobalPrefix(globalPrefix);
-console.log('port------', process.env.NX_API_PORT)
+  app.enableCors();
+
   const port = process.env.NX_API_PORT || 3333;
   await app.listen(port);
 

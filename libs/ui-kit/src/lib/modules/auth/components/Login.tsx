@@ -6,23 +6,21 @@ import {Link} from 'react-router-dom'
 import {getUserByToken, login} from '../core/_requests'
 import {toAbsoluteUrl} from '../../../helpers'
 import {useAuth} from '../core/Auth'
-import {FormattedMessage, useIntl} from "react-intl";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import {useIntl} from "react-intl";
+import {SubmitHandler, useForm} from "react-hook-form";
+import {yupResolver} from '@hookform/resolvers/yup';
+import {LoginInputs} from "@emms/models";
 
 const loginSchema = yup.object().shape({
-  mobile: yup.string()
+  username: yup.string()
     .required('VALIDATION.REQUIRED')
     .matches(/\d{11}/, 'VALIDATION.INVALID')
+    .min(11, 'VALIDATION.INVALID')
     .max(11, 'VALIDATION.INVALID'),
   password: yup.string()
     .required('VALIDATION.REQUIRED')
 });
 
-type Inputs = {
-  mobile: string,
-  password: string,
-};
 
 export function Login() {
   const [loading, setLoading] = useState(false);
@@ -30,14 +28,14 @@ export function Login() {
   const {saveAuth, setCurrentUser} = useAuth();
   const intl = useIntl();
 
-  const { register, handleSubmit, formState: { errors, isSubmitted } } = useForm<Inputs>({
+  const { register, handleSubmit, formState: { errors, isSubmitted } } = useForm<LoginInputs>({
     resolver: yupResolver(loginSchema)
   });
 
-  const onSubmit: SubmitHandler<Inputs> = async (values) => {
+  const onSubmit: SubmitHandler<LoginInputs> = async (values) => {
     setLoading(true);
     try {
-      const {data: auth} = await login(values.mobile, values.password);
+      const {data: auth} = await login(values);
       saveAuth(auth);
       const {data: user} = await getUserByToken(auth.api_token);
       setCurrentUser(user)
@@ -75,19 +73,19 @@ export function Login() {
           {intl.formatMessage({id: 'AUTH.INPUT.MOBILE'})}
         </label>
         <input
-          {...register("mobile", {required: true})}
+          {...register("username", {required: true})}
           placeholder={intl.formatMessage({id: 'AUTH.PLACEHOLDER.MOBILE'})}
           type="tel"
           className={clsx(
             'form-control form-control-lg form-control-solid text-left',
-            {'is-invalid': isSubmitted && errors.mobile},
-            {'is-valid': isSubmitted && !errors.mobile}
+            {'is-invalid': isSubmitted && errors.username},
+            {'is-valid': isSubmitted && !errors.username}
           )}
           autoComplete="off"
         />
-        {errors.mobile && (
+        {errors.username && (
           <div className='fv-plugins-message-container'>
-            <span role='alert' className="text-danger">{intl.formatMessage({id: errors.mobile?.message},
+            <span role='alert' className="text-danger">{intl.formatMessage({id: errors.username?.message},
               {name: intl.formatMessage({id: 'AUTH.INPUT.MOBILE'})})}</span>
           </div>
         )}

@@ -1,38 +1,36 @@
 import React, {useState} from 'react'
 import * as Yup from 'yup'
+import * as yup from 'yup'
 import clsx from 'clsx'
 import {Link} from 'react-router-dom'
 import {requestPassword} from '../core/_requests'
 import {useIntl} from "react-intl";
-import * as yup from "yup";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
+import {ForgotInput} from "@emms/models";
 
 const forgotPasswordSchema = Yup.object().shape({
-  mobile: yup.string()
+  username: yup.string()
     .required('VALIDATION.REQUIRED')
     .matches(/\d{11}/, 'VALIDATION.INVALID')
+    .min(11, 'VALIDATION.INVALID')
     .max(11, 'VALIDATION.INVALID')
 });
-
-type Inputs = {
-  mobile: string
-};
 
 export function ForgotPassword() {
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | undefined>(undefined)
   const intl = useIntl();
 
-  const { register, handleSubmit, formState: { errors, isSubmitted } } = useForm<Inputs>({
+  const { register, handleSubmit, formState: { errors, isSubmitted } } = useForm<ForgotInput>({
     resolver: yupResolver(forgotPasswordSchema)
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (values) => {
+  const onSubmit: SubmitHandler<ForgotInput> = (values) => {
     setLoading(true);
     setHasErrors(undefined);
     setTimeout(() => {
-      requestPassword(values.mobile)
+      requestPassword(values.username)
         .then(({data: {result}}) => {
           setHasErrors(false);
           setLoading(false);
@@ -78,19 +76,19 @@ export function ForgotPassword() {
             {intl.formatMessage({id: 'AUTH.INPUT.MOBILE'})}
           </label>
           <input
-            {...register("mobile", {required: true})}
+            {...register("username", {required: true})}
             placeholder={intl.formatMessage({id: 'AUTH.PLACEHOLDER.MOBILE'})}
             type="tel"
             className={clsx(
               'form-control form-control-lg form-control-solid text-left',
-              {'is-invalid': isSubmitted && errors.mobile},
-              {'is-valid': isSubmitted && !errors.mobile}
+              {'is-invalid': isSubmitted && errors.username},
+              {'is-valid': isSubmitted && !errors.username}
             )}
             autoComplete="off"
           />
-          {errors.mobile && (
+          {errors.username && (
             <div className='fv-plugins-message-container'>
-              <span role='alert' className="text-danger">{intl.formatMessage({id: errors.mobile?.message},
+              <span role='alert' className="text-danger">{intl.formatMessage({id: errors.username?.message},
                 {name: intl.formatMessage({id: 'AUTH.INPUT.MOBILE'})})}</span>
             </div>
           )}

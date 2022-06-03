@@ -1,6 +1,6 @@
-import {AuthModel} from './_models'
+import {AuthModel} from "@emms/models";
 
-const AUTH_LOCAL_STORAGE_KEY = 'kt-auth-react-v'
+const AUTH_LOCAL_STORAGE_KEY = 'emms-auth-react-v'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const getAuth = (): AuthModel | undefined => {
