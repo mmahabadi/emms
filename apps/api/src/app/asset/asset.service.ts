@@ -19,11 +19,11 @@ export class AssetService {
 
     getAsset(id: string) :Promise<Asset | undefined> {
         // from(this.checkForSave(assetCats));
-        return this.assetEntityRepository.findOne(id, {relations:["org"]});
+        return this.assetEntityRepository.findOne(id);
     }
 
     async getAllAsset(orgId: string) {
-        return await this.assetEntityRepository.find( {relations: ["parent"], where:{
+        return await this.assetEntityRepository.find( {relations: ["org"], where:{
                 org: orgId
             }});
     }
