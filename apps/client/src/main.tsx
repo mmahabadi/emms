@@ -1,9 +1,9 @@
-import { StrictMode } from 'react';
+import {StrictMode} from 'react';
 import * as ReactDOM from 'react-dom/client';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {ReactQueryDevtools} from 'react-query/devtools';
-
-import {LayoutI18nProvider, AuthProvider} from "@emms/ui-kit";
+import axios from 'axios';
+import {AuthProvider, LayoutI18nProvider, setupAxios} from "@emms/ui-kit";
 /**
  * TIP: Replace this style import with dark styles to enable dark mode
  *
@@ -17,6 +17,13 @@ import {LayoutI18nProvider, AuthProvider} from "@emms/ui-kit";
 // import './assets/sass/style.react.scss';
 // import '@ui-kit/style.react.scss';
 import {AppRoutes} from "./app/routing/AppRoutes";
+
+/**
+ * Inject Metronic interceptors for axios.
+ *
+ * @see https://github.com/axios/axios#interceptors
+ */
+setupAxios(axios);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

@@ -1,9 +1,8 @@
 import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useRef, useState,} from 'react'
 import {LayoutSplashScreen} from '@emms/ui-kit';
-import {UserModel} from './_models';
 import * as authHelper from './AuthHelpers'
 import {getUserByToken} from './_requests'
-import {AuthModel} from "@emms/models";
+import {AuthModel, UserModel} from "@emms/models";
 
 type AuthContextProps = {
   auth: AuthModel | undefined

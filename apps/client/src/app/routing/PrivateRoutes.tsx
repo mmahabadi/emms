@@ -1,19 +1,18 @@
-import {lazy, FC, Suspense} from 'react'
-import {Route, Routes, Navigate} from 'react-router-dom'
-import {MasterLayout} from '@emms/ui-kit';
+import {FC, lazy, Suspense} from 'react'
+import {Navigate, Route, Routes} from 'react-router-dom'
+import {getCSSVariableValue, MasterLayout, ProfilePage} from '@emms/ui-kit';
 import TopBarProgress from 'react-topbar-progress-indicator'
 import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
 import {MenuTestPage} from '../pages/MenuTestPage'
-import {getCSSVariableValue} from "@emms/ui-kit";
 
 const PrivateRoutes = () => {
   const BuilderPageWrapper = lazy(() => import('../pages/layout-builder/BuilderPageWrapper'))
-  // const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
   // const WizardsPage = lazy(() => import('../modules/wizards/WizardsPage'))
   // const AccountPage = lazy(() => import('../modules/accounts/AccountPage'))
   // const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   // const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   // const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
+  const AssetsPage = lazy(() => import('../modules/assets/AssetsPage'))
 
   return (
     <Routes>
@@ -25,22 +24,22 @@ const PrivateRoutes = () => {
         <Route path='builder' element={<BuilderPageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />
         {/* Lazy Modules */}
-        {/*<Route*/}
-        {/*  path='crafted/pages/profile/*'*/}
-        {/*  element={*/}
-        {/*    <SuspensedView>*/}
-        {/*      <ProfilePage />*/}
-        {/*    </SuspensedView>*/}
-        {/*  }*/}
-        {/*/>*/}
-        {/*<Route*/}
-        {/*  path='crafted/pages/wizards/*'*/}
-        {/*  element={*/}
-        {/*    <SuspensedView>*/}
-        {/*      <WizardsPage />*/}
-        {/*    </SuspensedView>*/}
-        {/*  }*/}
-        {/*/>*/}
+        <Route
+          path='crafted/pages/profile/*'
+          element={
+            <SuspensedView>
+              <ProfilePage />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='assets/*'
+          element={
+            <SuspensedView>
+              <AssetsPage />
+            </SuspensedView>
+          }
+        />
         {/*<Route*/}
         {/*  path='crafted/widgets/*'*/}
         {/*  element={*/}
