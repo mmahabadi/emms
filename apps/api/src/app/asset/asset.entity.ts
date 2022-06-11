@@ -16,7 +16,7 @@ export class Asset {
     example: '5dc228e2-51e4-4738-9d8a-2b72edb229a5',
     name: "asset_cat_id"
   })
-  @Column({ type: 'uuid', name: "asset_cat"})
+  @Column({ type: 'uuid', name: "asset_cat_id"})
   @OneToOne(() => AssetCat)
   @JoinColumn({name:"asset_cat_id" , referencedColumnName: "id"})
   assetCat: Relation<AssetCat>
