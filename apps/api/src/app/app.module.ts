@@ -22,6 +22,8 @@ import {AssetCatsModule} from "./assetCats/assetCats.module";
 import {AssetIdentityModule} from "./assetIdentity/assetIdentity.module";
 import {GoodsModule} from "./goods/goods.module";
 import {SkillModule} from "./skill/skill.module";
+import {JwtModule} from "@nestjs/jwt";
+import {OperModule} from "./oper/oper.module";
 
 @Module({
   imports: [
@@ -55,7 +57,8 @@ import {SkillModule} from "./skill/skill.module";
      AssetCatsModule,
      AssetIdentityModule,
      GoodsModule,
-     SkillModule
+     SkillModule,
+     OperModule,
   ],
   controllers: [AppController],
   providers: [AppService],
