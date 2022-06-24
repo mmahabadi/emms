@@ -1,9 +1,9 @@
 import {Injectable} from "@nestjs/common";
-import {from, Observable} from "rxjs";
+import {from} from "rxjs";
 import {InjectRepository} from "@nestjs/typeorm";
-import {OperPostEntity} from "../oper/models/post.entity";
 import {Repository} from "typeorm";
 import {AssetCat} from "./assetCat.entity";
+import {PaginatedResponse} from "../util/pagination-response";
 
 @Injectable()
 export class AssetCatsService {
@@ -23,8 +23,27 @@ export class AssetCatsService {
     }
 
     async getAllAssetCat(orgId: string) {
-        return await this.assetCatEntityRepository.find( {relations: ["parent"], where:{
-                org: orgId
-            }});
+      return await this.assetCatEntityRepository.find({
+        relations: ["parent"], where: {
+          org: orgId
+        }
+      });
+    }
+
+    async getAllAssetCatWithPaging(orgId: string, page: number, pageSize: number) {
+        const skip = (page-1) * pageSize;
+        // const keyword = query.keyword || ''
+        const response = await this.assetCatEntityRepository.findAndCount(
+          {
+            where:{
+              org: orgId,
+              // name: Like('%' + keyword + '%')
+            },
+            // order: { name: "DESC" },
+            take: pageSize,
+            skip
+          });
+      const [data, total] = response;
+      return new PaginatedResponse<AssetCat[]>(data ,page, total, pageSize);
     }
 }

@@ -1,7 +1,6 @@
 import {Injectable} from "@nestjs/common";
-import {from, Observable} from "rxjs";
+import {from} from "rxjs";
 import {InjectRepository} from "@nestjs/typeorm";
-import {OperPostEntity} from "../oper/models/post.entity";
 import {Repository} from "typeorm";
 import {Asset} from "./asset.entity";
 
@@ -23,8 +22,8 @@ export class AssetService {
     }
 
     async getAllAsset(orgId: string) {
-        return await this.assetEntityRepository.find( {relations: ["org"], where:{
-                org: orgId
-            }});
+        return await this.assetEntityRepository.find( {relations: ["org", "assetCat"], where:{
+            org: orgId
+        }});
     }
 }

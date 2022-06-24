@@ -1,12 +1,5 @@
-import {Dispatch, SetStateAction} from 'react'
-
-export type ID = undefined | null | number
-
-export type PaginationState = {
-  page: number
-  items_per_page: 10 | 30 | 50 | 100
-  links?: Array<{label: string; active: boolean; url: string | null; page: number | null}>
-}
+import {Dispatch, SetStateAction} from 'react';
+import {ID, PaginationState, Response} from "@emms/models";
 
 export type SortState = {
   sort?: string
@@ -21,17 +14,6 @@ export type SearchState = {
   search?: string
 }
 
-export type Response<T> = {
-  data?: T
-  payload?: {
-    message?: string
-    errors?: {
-      [key: string]: Array<string>
-    }
-    pagination?: PaginationState
-  }
-}
-
 export type QueryState = PaginationState & SortState & FilterState & SearchState
 
 export type QueryRequestContextProps = {
@@ -41,7 +23,7 @@ export type QueryRequestContextProps = {
 
 export const initialQueryState: QueryState = {
   page: 1,
-  items_per_page: 10,
+  pageSize: 10
 }
 
 export const initialQueryRequest: QueryRequestContextProps = {
@@ -54,9 +36,10 @@ export type QueryResponseContextProps<T> = {
   refetch: () => void
   isLoading: boolean
   query: string
+  hasServerSidePaging?: boolean
 }
 
-export const initialQueryResponse = {refetch: () => {}, isLoading: false, query: ''}
+export const initialQueryResponse = {refetch: () => {}, isLoading: false, query: '', hasServerSidePaging: false}
 
 export type ListViewContextProps = {
   selected: Array<ID>
@@ -74,9 +57,13 @@ export type ListViewContextProps = {
 
 export const initialListView: ListViewContextProps = {
   selected: [],
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onSelect: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onSelectAll: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   clearSelected: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setItemIdForUpdate: () => {},
   isAllSelected: false,
   disabled: false,

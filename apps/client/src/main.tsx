@@ -4,18 +4,7 @@ import {QueryClient, QueryClientProvider} from 'react-query';
 import {ReactQueryDevtools} from 'react-query/devtools';
 import axios from 'axios';
 import {AuthProvider, LayoutI18nProvider, setupAxios} from "@emms/ui-kit";
-/**
- * TIP: Replace this style import with dark styles to enable dark mode
- *
- * import './_metronic/assets/sass/style.dark.scss'
- *
- * TIP: Replace this style import with rtl styles to enable rtl mode
- *
- * import './_metronic/assets/css/style.rtl.css'
- **/
-// import './assets/sass/style.scss';
-// import './assets/sass/style.react.scss';
-// import '@ui-kit/style.react.scss';
+
 import {AppRoutes} from "./app/routing/AppRoutes";
 
 /**

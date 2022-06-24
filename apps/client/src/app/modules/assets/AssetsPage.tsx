@@ -3,14 +3,13 @@ import {useIntl} from "react-intl";
 import {PageLink, PageTitle} from "@emms/ui-kit";
 import {Link, Outlet, Route, Routes, useLocation} from "react-router-dom";
 import {AssetsHeader} from "./components/AssetsHeader";
-import clsx from "clsx";
 import {AssetsList} from "./components/AssetsList";
-import {AssetsCategoryList} from "../AssetsCategory/AssetsCategoryList";
+import {AssetsCategoryList} from "./components/AssetsCategoryList";
 
-const profileBreadCrumbs: Array<PageLink> = [
+const breadCrumbs: Array<PageLink> = [
   {
     title: 'MENU.ASSETS',
-    path: '/crafted/pages/profile/overview',
+    path: '/assets/overview',
     isSeparator: false,
     isActive: false,
   },
@@ -45,7 +44,7 @@ const AssetsPage: FC = () => {
                         (location.pathname === '/assets/overview' && 'active')
                       }
                       to='/assets/overview'
-                    >{intl.formatMessage({id: 'MENU.ASSETS'})}</Link>
+                    >{intl.formatMessage({id: 'MENU.ASSETS.ASSET'})}</Link>
 
                   </li>
                   <li className='nav-item'>
@@ -76,11 +75,8 @@ const AssetsPage: FC = () => {
           path='overview'
           element={
             <>
-              <PageTitle breadcrumbs={profileBreadCrumbs}>{intl.formatMessage({id: 'MENU.ASSETS'})}</PageTitle>
-              {/*<div className={clsx('tab-pane', 'active')}>*/}
+              <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.ASSETS.ASSET'})}</PageTitle>
               <AssetsList/>
-              {/*</div>*/}
-              {/*<Overview />*/}
             </>
           }
         />
@@ -88,11 +84,8 @@ const AssetsPage: FC = () => {
           path='categories'
           element={
             <>
-              <PageTitle breadcrumbs={profileBreadCrumbs}>{intl.formatMessage({id: 'MENU.ASSETS.CATEGORY'})}</PageTitle>
-              <div className={clsx('tab-pane', 'active')}>
-                <AssetsCategoryList/>
-              </div>
-              {/*<Overview />*/}
+              <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.ASSETS.CATEGORY'})}</PageTitle>
+              <AssetsCategoryList/>
             </>
           }
         />
