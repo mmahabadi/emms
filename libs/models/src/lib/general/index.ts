@@ -1,7 +1,7 @@
 
 export type ID = undefined | null | string;
 
-export type Entity = ID;
+export type Entity = { id: ID };
 
 export type PaginationState = {
   page: number
@@ -10,7 +10,12 @@ export type PaginationState = {
   siblingCount?: number
 }
 
-export type PaginationLink = {label: string; active: boolean; url: string | null; page: number | null}
+export type PaginationLink = {
+  label: string;
+  active: boolean;
+  url: string | null;
+  page: number | null
+}
 
 export type Response<T> = {
   data?: T

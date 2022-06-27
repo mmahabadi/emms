@@ -4,22 +4,21 @@ import {useQueryResponseData, useQueryResponseLoading, useQueryResponsePaginatio
 import {TableLoading} from './components/TableLoading';
 import {TablePagination} from './components/TablePagination';
 import {KTCardBody} from '../../KTCardBody';
-import {DataTableColumn} from "@emms/models";
 import {HeaderColumn} from "./components/HeaderColumn";
 import {TableRow} from "./components/TableRow";
 import {useIntl} from "react-intl";
+import {useDataTableConfig} from "../core/TableConfigProvider";
+import {DataTableColumn} from "@emms/models";
 
-export type IProps = {
-  columns: DataTableColumn[];
-}
-
-const DataTableContainer: FC<IProps> = ({columns}) => {
+const DataTableContainer: FC = () => {
   const intl = useIntl();
   const responseData = useQueryResponseData();
   const isLoading = useQueryResponseLoading();
   const pagination = useQueryResponsePagination();
+  const {columns, actions} = useDataTableConfig();
+  const ID_COLUMN = {Header: '', id: 'id', accessor: 'id', isVisible: false} as DataTableColumn;
   const memoizedData = useMemo(() => responseData, [responseData]);
-  const memoizedColumns = useMemo(() => columns, []);
+  const memoizedColumns = useMemo(() => [...columns, ID_COLUMN], []);
 
   const {getTableProps, getTableBodyProps, headers, rows, prepareRow} = useTable({
     columns: memoizedColumns,
@@ -40,13 +39,23 @@ const DataTableContainer: FC<IProps> = ({columns}) => {
               {headers.map((column: ColumnInstance) => (
                 <HeaderColumn key={column.id} column={column} />
               ))}
+              {actions && actions.length > 0 &&
+                <th className='text-end min-w-100px'>
+                  {intl.formatMessage({id: 'DATATABLE.ACTIONS'})}
+                </th>
+              }
             </tr>
           </thead>
           <tbody className='text-gray-600 fw-bold' {...getTableBodyProps()}>
             {rows.length > 0 ? (
               rows.map((row: Row, i) => {
                 prepareRow(row)
-                return <TableRow row={row} rowNumber={(i + 1) + ((pagination.page - 1) * pagination.pageSize)} key={`row-${i}-${row.id}`} />
+                return <TableRow
+                  key={`row-${i}-${row.id}`}
+                  row={row}
+                  rowNumber={(i + 1) + ((pagination.page - 1) * pagination.pageSize)}
+                  actions={actions}
+                />
               })
             ) : (
               <tr>

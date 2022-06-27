@@ -11,7 +11,7 @@ const TablePagination = () => {
   const links = usePaginationLinks();
 
   const updatePage = (newPage: number | null) => {
-    if (!newPage || isLoading || pagination.page == newPage) {
+    if (!newPage || pagination.page == newPage) {
       return
     }
 
@@ -30,7 +30,8 @@ const TablePagination = () => {
 
               return (
                 <li
-                  key={index}
+                  key={`${index}-${link.label}`}
+                  onClick={() => updatePage(link.page)}
                   className={clsx('page-item', {
                     active: pagination.page == link.page,
                     disabled: isLoading,
@@ -40,7 +41,6 @@ const TablePagination = () => {
                 >
                   <a
                     className='page-link'
-                    onClick={() => updatePage(link.page)}
                     dangerouslySetInnerHTML={{__html: link.label}}
                     style={{cursor: 'pointer'}}
                   />

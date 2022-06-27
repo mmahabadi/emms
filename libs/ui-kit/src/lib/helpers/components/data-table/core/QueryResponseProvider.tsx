@@ -1,29 +1,19 @@
-import {FC, ReactElement, useContext, useEffect, useMemo, useState} from 'react'
+import {FC, PropsWithChildren, useContext, useEffect, useMemo, useState} from 'react'
 import {useQuery} from 'react-query'
 import {useQueryRequest} from './QueryRequestProvider'
 import {createResponseContext, stringifyRequestQuery} from '../../../crud-helper/helpers';
 import {initialQueryResponse, initialQueryState} from '../../../crud-helper/models';
 import {PaginationLink, PaginationState} from "@emms/models";
 import {useIntl} from "react-intl";
+import {useDataTableConfig} from "./TableConfigProvider";
 
 const QueryResponseContext = createResponseContext(initialQueryResponse);
 
-interface IProps {
-  children: ReactElement;
-  queryId: string;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  getData: (props: any) => {}
-  hasServerSidePaging: boolean;
-  cacheTime?: number;
-  keepPreviousData?: boolean;
-  refetchOnWindowFocus?: boolean;
-}
-
-const QueryResponseProvider: FC<IProps> = (props) => {
-  const {children, hasServerSidePaging, queryId, getData, cacheTime = 0, keepPreviousData = true, refetchOnWindowFocus = false} = props;
+const QueryResponseProvider: FC<PropsWithChildren<any>> = ({children}) => {
+  const {hasServerSidePaging, queryId, getData, cacheTime, keepPreviousData, refetchOnWindowFocus} = useDataTableConfig();
   const {state} = useQueryRequest();
-  const [query, setQuery] = useState<string>(stringifyRequestQuery(state));
-  const updatedQuery = useMemo(() => stringifyRequestQuery(state), [state]);
+  const [query, setQuery] = useState<string>(stringifyRequestQuery(state, !!hasServerSidePaging));
+  const updatedQuery = useMemo(() => stringifyRequestQuery(state, !!hasServerSidePaging), [state]);
 
   useEffect(() => {
     if (query !== updatedQuery) {
@@ -36,11 +26,11 @@ const QueryResponseProvider: FC<IProps> = (props) => {
     refetch,
     data: response
   } = useQuery(
-    `${queryId}${hasServerSidePaging ? '-' + query : ''}`,
+    `${queryId}${query ? '&' + query : ''}`,
     () => {
       return getData(query);
     },
-    {cacheTime, keepPreviousData, refetchOnWindowFocus}
+    {cacheTime: Number(cacheTime) * 60 * 1000, keepPreviousData, refetchOnWindowFocus}
   )
 
   return (

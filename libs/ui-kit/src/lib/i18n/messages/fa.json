@@ -5,11 +5,20 @@
   "MENU.ASSETS.CATEGORY": "گروه تجهیز",
 
   "GENERAL.WAIT_DESCRIPTION": "لطفا صبر کنید...",
+  "GENERAL.ADD": "افزودن",
+  "GENERAL.EDIT": "ویرایش",
+  "GENERAL.DELETE": "حذف",
   "GENERAL.CODE": "کد",
+  "GENERAL.NAME": "نام",
   "GENERAL.GOODS": "کالا",
-  "GENERAL.ASSET": "تجهیز",
-  "GENERAL.ASSETS": "تجهیزات",
-  "GENERAL.ASSET_CAT": " گروه تجهیز",
+
+  "ASSETS.ASSET": "تجهیز",
+  "ASSETS.ASSETS": "تجهیزات",
+  "ASSETS.ASSET.ADD": "افزودن تجهیر",
+  "ASSETS.ASSET.EDIT": "ویرایش تجهیر",
+  "ASSETS.CAT": "گروه تجهیز",
+  "ASSETS.REPORT": "گزارش تجهیزات",
+
   "GENERAL.PLACE": "مکان",
   "GENERAL.PLACES": "مکانها ",
   "GENERAL.CHECKLIST": "چک لیست",
@@ -97,6 +106,12 @@
   "DATATABLE.NEXT": "بعدی &raquo;",
   "DATATABLE.NO_RECORD": "هیچ رکوردی یافت نشد.",
   "DATATABLE.PROCESSING": "در حال بارگذاری...",
+  "DATATABLE.FILTER": "فیلتر",
+  "DATATABLE.FILTERS": "فیلترها",
+  "DATATABLE.RESET": "پاک کردن",
+  "DATATABLE.APPLY": "تایید",
+  "DATATABLE.ACTIONS": "عملیات",
+
 
   "VALIDATION.INVALID": "{name} نامعتبر است",
   "VALIDATION.REQUIRED": "{name} اجباری است",

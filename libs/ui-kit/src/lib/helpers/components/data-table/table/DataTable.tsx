@@ -1,30 +1,21 @@
 import {FC} from "react";
 import {ListViewProvider, QueryRequestProvider, QueryResponseProvider} from '../core';
-import {TableConfig} from "@emms/models";
+import {DataTableConfig} from "@emms/models";
 import {DataTableContainer} from "./DataTableContainer";
+import {TableHeader} from "./components/header/TableHeader";
+import {TableConfigProvider} from "../core/TableConfigProvider";
 
-const DataTable: FC<TableConfig> = ({
-      columns,
-      queryId,
-      getData,
-      cacheTime,
-      refetchOnWindowFocus,
-      hasServerSidePaging,
-      keepPreviousData
-  }) => (
-  <QueryRequestProvider>
-    <QueryResponseProvider
-      queryId={queryId}
-      getData={getData}
-      cacheTime={cacheTime}
-      refetchOnWindowFocus={refetchOnWindowFocus}
-      hasServerSidePaging={!!hasServerSidePaging}
-      keepPreviousData={keepPreviousData}>
-      <ListViewProvider>
-        <DataTableContainer columns={columns}/>
-      </ListViewProvider>
-    </QueryResponseProvider>
-  </QueryRequestProvider>
+const DataTable: FC<DataTableConfig> = (config) => (
+  <TableConfigProvider config={config}>
+    <QueryRequestProvider>
+      <QueryResponseProvider>
+        <ListViewProvider>
+          <TableHeader/>
+          <DataTableContainer/>
+        </ListViewProvider>
+      </QueryResponseProvider>
+    </QueryRequestProvider>
+  </TableConfigProvider>
 )
 
 export {DataTable};

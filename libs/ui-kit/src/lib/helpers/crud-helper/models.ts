@@ -1,5 +1,5 @@
 import {Dispatch, SetStateAction} from 'react';
-import {ID, PaginationState, Response} from "@emms/models";
+import {DataTableConfig, ID, PaginationState, Response} from "@emms/models";
 
 export type SortState = {
   sort?: string
@@ -67,4 +67,18 @@ export const initialListView: ListViewContextProps = {
   setItemIdForUpdate: () => {},
   isAllSelected: false,
   disabled: false,
+}
+
+export const initialDataTableConfig: DataTableConfig = {
+  columns: [],
+  queryId: '',
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  getData: (props: any) => {},
+  cacheTime: 0,
+  keepPreviousData: true,
+  refetchOnWindowFocus: false,
+  hasServerSidePaging: false,
+  toolbar: []
 }

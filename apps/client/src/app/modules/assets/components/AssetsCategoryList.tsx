@@ -1,8 +1,9 @@
 import {FC} from "react";
 import {DataTableColumn} from "@emms/models";
 import {DataTable} from "@emms/ui-kit";
-import {QUERIES} from "../../../queries";
+import {QUERIES} from "../../../helpers/queries";
 import {getAssetCategories} from "../core/services";
+import {AssetsFilter} from "./AssetsFilter";
 
 export const AssetsCategoryList: FC = () => {
   const columns = [
@@ -15,8 +16,9 @@ export const AssetsCategoryList: FC = () => {
       columns={columns}
       queryId={QUERIES.ASSETS_CAT_LIST}
       getData={getAssetCategories}
-      cacheTime={60 * 10 * 1000}
+      cacheTime={15}
       hasServerSidePaging={true}
+      filterComponent={AssetsFilter}
     />
   )
 }

@@ -12,12 +12,12 @@ import {ID} from "@emms/models";
 const ListViewContext = createContext<ListViewContextProps>(initialListView)
 
 const ListViewProvider: FC<any> = ({children}) => {
-  const [selected, setSelected] = useState<Array<ID>>(initialListView.selected)
-  const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(initialListView.itemIdForUpdate)
-  const {isLoading} = useQueryResponse()
-  const data = useQueryResponseData()
-  const disabled = useMemo(() => calculatedGroupingIsDisabled(isLoading, data), [isLoading, data])
-  const isAllSelected = useMemo(() => calculateIsAllDataSelected(data, selected), [data, selected])
+  const [selected, setSelected] = useState<Array<ID>>(initialListView.selected);
+  const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(initialListView.itemIdForUpdate);
+  const {isLoading} = useQueryResponse();
+  const data = useQueryResponseData();
+  const disabled = useMemo(() => calculatedGroupingIsDisabled(isLoading, data), [isLoading, data]);
+  const isAllSelected = useMemo(() => calculateIsAllDataSelected(data, selected), [data, selected]);
 
   return (
     <ListViewContext.Provider
@@ -31,7 +31,6 @@ const ListViewProvider: FC<any> = ({children}) => {
           groupingOnSelect(id, selected, setSelected)
         },
         onSelectAll: () => {
-          //TODO type
           groupingOnSelectAll(isAllSelected, setSelected, data as any);
         },
         clearSelected: () => {

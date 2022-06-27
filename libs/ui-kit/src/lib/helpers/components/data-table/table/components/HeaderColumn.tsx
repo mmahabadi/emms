@@ -1,6 +1,7 @@
 import {FC} from 'react'
 import {ColumnInstance} from 'react-table';
 import {useIntl} from "react-intl";
+import {TableSelectionHeader} from "./TableSelectionHeader";
 
 type Props = {
   column: ColumnInstance
@@ -8,6 +9,14 @@ type Props = {
 
 const HeaderColumn: FC<Props> = ({column}) => {
   const intl = useIntl();
+
+  if (column.isVisible === false) {
+    return <></>;
+  }
+
+  if (column.id === 'selection') {
+    return <TableSelectionHeader />;
+  }
 
   return (
     <>
