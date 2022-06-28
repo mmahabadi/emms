@@ -23,7 +23,7 @@ const TableFilter = () => {
     return <></>
   }
 
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, control } = useForm();
 
   const onSubmit: SubmitHandler<any> = async (values) => {
       updateState({
@@ -61,7 +61,7 @@ const TableFilter = () => {
             onReset={resetData}
           >
 
-            <FilterComponent register={register}/>
+            <FilterComponent register={register} control={control}/>
 
             <div className='d-flex justify-content-end'>
               <button

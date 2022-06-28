@@ -1,7 +1,7 @@
-import {Body, Controller, Get, Param, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, Query} from '@nestjs/common';
 import {LocationService} from "./location.service";
 import {Location} from "./location.entity";
-import { ApiTags } from '@nestjs/swagger';
+import {ApiTags} from '@nestjs/swagger';
 
 @ApiTags('location')
 @Controller('location')
@@ -18,5 +18,12 @@ export class LocationController {
     @Get('all/:id')
     getAll(@Param('id') id: string): Promise<Location[]> {
         return this.locationService.getAllLocation(id);
+    }
+    @Get('search/:id')
+    search(
+      @Param('id') id: string,
+      @Query('q') q?: string
+    ): Promise<Location[]> {
+        return this.locationService.search(id, q);
     }
 }

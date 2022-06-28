@@ -1,6 +1,6 @@
 import {Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
-import {Repository} from "typeorm";
+import {Like, Repository} from "typeorm";
 import {Location} from "./location.entity";
 
 @Injectable()
@@ -25,4 +25,16 @@ export class LocationService {
                 org: orgId
             }});
     }
+
+  async search(orgId: string, q: string) {
+    return await this.locationEntityRepository.find({
+      relations: ["parent"],
+      where: {
+        org: orgId,
+        name: Like(`%${q}%`)
+      },
+      select: ["id", "name", "parent"]
+    });
+  }
+
 }

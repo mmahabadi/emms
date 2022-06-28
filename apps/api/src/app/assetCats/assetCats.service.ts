@@ -1,7 +1,7 @@
 import {Injectable} from "@nestjs/common";
 import {from} from "rxjs";
 import {InjectRepository} from "@nestjs/typeorm";
-import {Repository} from "typeorm";
+import {Like, Repository} from "typeorm";
 import {AssetCat} from "./assetCat.entity";
 import {PaginatedResponse} from "../util/pagination-response";
 
@@ -24,9 +24,20 @@ export class AssetCatsService {
 
     async getAllAssetCat(orgId: string) {
       return await this.assetCatEntityRepository.find({
-        relations: ["parent"], where: {
+        // relations: ["parent"],
+        where: {
           org: orgId
         }
+      });
+    }
+
+    async search(orgId: string, q: string) {
+      return await this.assetCatEntityRepository.find({
+        where: {
+          org: orgId,
+          name: Like(`%${q}%`)
+        },
+
       });
     }
 

@@ -4,7 +4,9 @@
   "MENU.ASSETS.ASSET": "تجهیز",
   "MENU.ASSETS.CATEGORY": "گروه تجهیز",
 
-  "GENERAL.WAIT_DESCRIPTION": "لطفا صبر کنید...",
+  "GENERAL.LOADING": "لطفا صبر کنید...",
+  "GENERAL.SEARCH": "جستجو",
+  "GENERAL.NO_RESULT": "آیتمی یافت نشد.",
   "GENERAL.ADD": "افزودن",
   "GENERAL.EDIT": "ویرایش",
   "GENERAL.DELETE": "حذف",
@@ -29,7 +31,6 @@
   "GENERAL.ID": "هویت",
   "GENERAL.ORG": "سازمان",
   "GENERAL.FISCAL": "دوره",
-  "GENERAL.NAME": "نام",
   "GENERAL.FIELDTITLE": "تیتر",
   "GENERAL.TYPE": "نوع",
   "GENERAL.CODELENGTH": "طول کد",

@@ -17,9 +17,18 @@ export class AssetCatController {
     get(@Param('id') id: string): Promise<AssetCat> {
         return this.assetCatsService.getAssetCat(id);
     }
+
     @Get('all/:id')
     getAll(@Param('id') id: string): Promise<AssetCat[]> {
         return this.assetCatsService.getAllAssetCat(id);
+    }
+
+    @Get('search/:id')
+    search(
+      @Param('id') id: string,
+      @Query('q') q?: string
+    ): Promise<AssetCat[]> {
+        return this.assetCatsService.search(id, q);
     }
 
     @Get('all/paging/:id')
