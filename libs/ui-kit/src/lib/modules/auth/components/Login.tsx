@@ -139,7 +139,7 @@ export function Login() {
           {!loading && <span className='indicator-label'>{intl.formatMessage({id: 'AUTH.LOGIN.BUTTON'})}</span>}
           {loading && (
             <span className='indicator-progress' style={{display: 'block'}}>
-              {intl.formatMessage({id: 'GENERAL.WAIT_DESCRIPTION'})}
+              {intl.formatMessage({id: 'GENERAL.LOADING'})}
               <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
             </span>
           )}

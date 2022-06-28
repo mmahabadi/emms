@@ -30,7 +30,7 @@ const AsideDefault: FC = () => {
           <Link to='/dashboard'>
             <img
               alt='Logo'
-              className='h-25px logo'
+              className='h-35px logo'
               src={toAbsoluteUrl('/media/logos/logo-1-dark.svg')}
             />
           </Link>
@@ -39,7 +39,7 @@ const AsideDefault: FC = () => {
           <Link to='/dashboard'>
             <img
               alt='Logo'
-              className='h-25px logo'
+              className='h-35px logo'
               src={toAbsoluteUrl('/media/logos/logo-1.svg')}
             />
           </Link>
@@ -73,22 +73,22 @@ const AsideDefault: FC = () => {
       {/* end::Aside menu */}
 
       {/* begin::Footer */}
-      <div className='aside-footer flex-column-auto pt-5 pb-7 px-5' id='kt_aside_footer'>
-        <a
-          target='_blank'
-          className='btn btn-custom btn-primary w-100'
-          href={'#'}
-          data-bs-toggle='tooltip'
-          data-bs-trigger='hover'
-          data-bs-dismiss-='click'
-          title='Check out the complete documentation with over 100 components'
-        >
-          <span className='btn-label'>Docs & Components</span>
-          <span className='svg-icon btn-icon svg-icon-2'>
-            <KTSVG path='/media/icons/duotune/general/gen005.svg' />
-          </span>
-        </a>
-      </div>
+      {/*<div className='aside-footer flex-column-auto pt-5 pb-7 px-5' id='kt_aside_footer'>*/}
+      {/*  <a*/}
+      {/*    target='_blank'*/}
+      {/*    className='btn btn-custom btn-primary w-100'*/}
+      {/*    href={'#'}*/}
+      {/*    data-bs-toggle='tooltip'*/}
+      {/*    data-bs-trigger='hover'*/}
+      {/*    data-bs-dismiss-='click'*/}
+      {/*    title='Check out the complete documentation with over 100 components'*/}
+      {/*  >*/}
+      {/*    <span className='btn-label'>Docs & Components</span>*/}
+      {/*    <span className='svg-icon btn-icon svg-icon-2'>*/}
+      {/*      <KTSVG path='/media/icons/duotune/general/gen005.svg' />*/}
+      {/*    </span>*/}
+      {/*  </a>*/}
+      {/*</div>*/}
       {/* end::Footer */}
     </div>
   )

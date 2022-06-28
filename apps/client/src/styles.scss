@@ -15,6 +15,19 @@ h1, h2, h3, h4, h5, h6,input, textarea {
 .text-left{
   text-align: left;
 }
-.ltr{
+.ltr, .ReactQueryDevtools{
   direction: ltr;
+}
+.page-item {
+  margin-left: 0.3rem;
+}
+.page-item .page-link, .page-item.next .page-link, .page-item.previous .page-link {
+  color: #a1a5b7;
+  height: 2.2rem;
+  min-width: 2.2rem;
+  font-size: 0.9rem;
+}
+
+.page-item.active:hover .page-link {
+    color: #ffffff;
 }

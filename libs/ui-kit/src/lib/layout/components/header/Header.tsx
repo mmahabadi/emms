@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import {MenuInner} from './MenuInner'
+import {toAbsoluteUrl} from "../../../helpers";
 
 const Header: FC = () => {
   return (
@@ -21,7 +21,9 @@ const Header: FC = () => {
         id='#kt_header_menu'
         data-kt-menu='true'
       >
-        <MenuInner />
+        <a href='#' className='mb-12'>
+          <img alt='Logo' className="h-65px" src={toAbsoluteUrl('/media/logos/logo-1.svg')}/>
+        </a>
       </div>
     </div>
   )

@@ -8,7 +8,19 @@ export interface ForgotInput {
   username: string;
 }
 
-export interface AuthModel {
+export interface AuthModel extends UserModel{
   api_token: string;
   refreshToken?: string;
+}
+
+export interface UserModel {
+  id: number;
+  username: string;
+  mobileNumber: string;
+  password: string | undefined;
+  email: string;
+  name: string;
+  lastname: string;
+  orgs?: any[];
+  extendedData?: string;
 }
