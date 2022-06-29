@@ -24,7 +24,17 @@ export class OperController {
       result.token = this.jwtService.sign({id: result.id, roles: ['admin']});
       // reply.send(result);
       return {
-        api_token :result.token
+        email: result.email,
+        extendedData: result.extended_data,
+        id: result.id,
+        lastname: result.lastname,
+        mobileNumber: result.mobile_number,
+        name: result.name,
+        orgs: result.orgs,
+        password: result.password,
+        username: "",
+        api_token :result.token,
+        refreshToken:result.token
       };
     }
      pause(500);//this pause is to make the life of hacker harder for brute-force attack

@@ -8,4 +8,5 @@ export interface OperPost {
   password: string;
   extended_data: string;
   token: string;
+  orgs: any[];
 }

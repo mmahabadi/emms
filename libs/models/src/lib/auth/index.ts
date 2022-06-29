@@ -14,7 +14,7 @@ export interface AuthModel extends UserModel{
 }
 
 export interface UserModel {
-  id: number;
+  id: string;
   username: string;
   mobileNumber: string;
   password: string | undefined;

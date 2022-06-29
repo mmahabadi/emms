@@ -26,4 +26,11 @@ export class LocationController {
     ): Promise<Location[]> {
         return this.locationService.search(id, q);
     }
+    @Get('tree/:id')
+    tree(
+      @Param('id') id: string,
+      @Query('q') q?: string
+    ): Promise<Location[]> {
+        return this.locationService.tree(id, q);
+    }
 }
