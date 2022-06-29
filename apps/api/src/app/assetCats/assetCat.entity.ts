@@ -1,6 +1,6 @@
 import {Column, Entity, JoinColumn, OneToOne, PrimaryColumn, Relation} from 'typeorm';
 import {Org} from "../org/org.entity";
-import { ApiProperty } from '@nestjs/swagger';
+import {ApiProperty} from '@nestjs/swagger';
 
 @Entity({ schema: 'mms', name: 'asset_cat' })
 export class AssetCat {
@@ -47,8 +47,10 @@ export class AssetCat {
   @ApiProperty({
     example: '2016-06-22 20:44:52.134125-07'
   })
-  @Column({ type: 'uuid' })
-  parent_id: string;
+  @Column({ type: 'uuid', name: 'id' })
+  @OneToOne(() => AssetCat)
+  @JoinColumn({name:"parent_id" , referencedColumnName: "id"})
+  parent: Relation<AssetCat>;
 
   @ApiProperty({
     example: '2016-06-22 20:44:52.134125-07'

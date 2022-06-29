@@ -1,5 +1,4 @@
 import React, {FC} from 'react'
-import {toAbsoluteUrl} from '../../../helpers'
 
 const Demos: FC = () => {
   const demos = [
@@ -64,11 +63,11 @@ const Demos: FC = () => {
               } rounded`}
             >
               <div className='overlay-wrapper'>
-                <img
-                  src={toAbsoluteUrl(`/media/demos/${item.name}.png`)}
-                  alt='demo'
-                  className={`w-100 ${!item.available && 'opacity-75'}`}
-                />
+                {/*<img*/}
+                {/*  src={toAbsoluteUrl(`/media/demos/${item.name}.png`)}*/}
+                {/*  alt='demo'*/}
+                {/*  className={`w-100 ${!item.available && 'opacity-75'}`}*/}
+                {/*/>*/}
               </div>
 
               <div className='overlay-layer bg-dark bg-opacity-10'>
