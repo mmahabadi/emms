@@ -90,5 +90,6 @@
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "implicitDependencies": ["ui-kit", "models"]
 }

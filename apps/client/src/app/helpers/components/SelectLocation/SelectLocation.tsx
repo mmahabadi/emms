@@ -1,10 +1,10 @@
 import {FC, useState} from "react";
-import {SelectInput} from "@emms/ui-kit";
+import {SelectInput, withInput} from "@emms/ui-kit";
 import {getAsyncLocations} from "./core/service";
 import {Controller} from "react-hook-form";
 import {AssetCategory} from "@emms/models";
 
-export const SelectLocation: FC<any> = ({name, control}) => {
+const SelectLocationController: FC<any> = ({name, form: {control}}) => {
   const [state, setState] = useState(null);
 
   return (
@@ -29,3 +29,5 @@ export const SelectLocation: FC<any> = ({name, control}) => {
     />
   )
 }
+const SelectLocation = withInput(SelectLocationController);
+export {SelectLocation}

@@ -1,12 +1,11 @@
 import {FC, useState} from "react";
-import {SelectInput} from "@emms/ui-kit";
+import {SelectInput, withInput} from "@emms/ui-kit";
 import {getAsyncAssetCategories} from "./core/service";
 import {Controller} from "react-hook-form";
 import {AssetCategory} from "@emms/models";
 
-export const SelectAssetCat: FC<any> = ({name, control}) => {
+const InputController: FC<any> = ({name, form: {control}}) => {
   const [state, setState] = useState(null);
-
   return (
     <Controller
       name={name}
@@ -29,3 +28,5 @@ export const SelectAssetCat: FC<any> = ({name, control}) => {
     />
   )
 }
+const SelectAssetCat = withInput(InputController);
+export {SelectAssetCat}

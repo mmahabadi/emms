@@ -1,13 +1,17 @@
-import {FC} from "react";
+import {FC, useEffect} from "react";
 import {getAssets} from "../core/services";
-import {DataTable, KTSVG} from "@emms/ui-kit";
+import {DataTable, KTSVG, useModalConfig} from "@emms/ui-kit";
 import {Assets, Button, DataTableColumn} from "@emms/models";
 import {QUERIES} from "../../../helpers/queries";
 import {AssetsFilter} from "./AssetsFilter";
-import {useModalConfig} from "../../../../../../../libs/ui-kit/src/lib/helpers/components/modal/core/ModalProvider";
+import {AssetEntryForm} from "./AssetEntryForm";
 
 export const AssetsList: FC = () => {
   const {updateConfig: updateModalConfig} = useModalConfig();
+
+  useEffect(() => {
+    updateModalConfig({bodyComponent: AssetEntryForm, isLarge: true});
+  }, []);
 
   const columns = [
     { Header: 'GENERAL.CODE', accessor: 'code'},
@@ -24,7 +28,9 @@ export const AssetsList: FC = () => {
     {
       icon: <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-2' />,
       text: 'GENERAL.ADD',
-      click: () => {console.log('add')},
+      click: () => {
+        updateModalConfig({show: true, title: 'ASSETS.ASSET.ADD'});
+      },
       className: 'btn-primary'
     },
   ] as Button[];
