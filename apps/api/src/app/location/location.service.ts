@@ -37,4 +37,21 @@ export class LocationService {
     });
   }
 
+  async tree(orgId: string, q: string) {
+    const result = await this.locationEntityRepository.query(
+      `Select l.*, c.children
+    from mms.location l
+    inner join (
+      Select parent_id, json_agg(json_build_object('id', id, 'code', code, 'name', name)) as children
+    from mms.location
+    where parent_id != id
+    group By 1
+  )c on c.parent_id = l.id
+  Where l.org_id = $1`,
+      [orgId],
+    );
+    return result;
+
+  }
+
 }
