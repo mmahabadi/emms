@@ -6,7 +6,7 @@ const ModalHeader = () => {
   const intl = useIntl();
 
   const closeHandler = () => {
-    updateConfig({show: false});
+    updateConfig({show: false, selectedItem: null});
   }
 
   return (

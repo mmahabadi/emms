@@ -2,10 +2,10 @@ import {useIntl} from "react-intl";
 import clsx from "clsx";
 import {FC} from "react";
 import {InputPropTypes} from "@emms/models";
-import {withInput} from "./input-hoc";
+import {withInput} from "../../hoc/input-hoc";
 
 const TextInputController: FC<InputPropTypes> = ({
-   form, label, name, placeholder,
+   form, name, placeholder,
    type = 'text', className, required = false,
    showValidation = false}) => {
   const {register, formState: { errors, isSubmitted }} = form;

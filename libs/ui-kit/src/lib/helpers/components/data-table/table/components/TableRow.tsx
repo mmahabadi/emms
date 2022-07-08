@@ -15,7 +15,7 @@ const TableRow: FC<Props> = ({row, rowNumber, actions}) => {
 
   const handleActionClick = (action: Button) => {
     if(action && action.click) {
-      action.click(row?.values);
+      action.click(row?.original);
     }
   }
   return(

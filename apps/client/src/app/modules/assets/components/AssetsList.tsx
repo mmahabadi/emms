@@ -39,7 +39,7 @@ export const AssetsList: FC = () => {
     {
       icon: 'edit',
       click: (item: Assets) => {
-        updateModalConfig({show: true, title: 'ASSETS.ASSET.EDIT'});
+        updateModalConfig({show: true, title: 'ASSETS.ASSET.EDIT', selectedItem: item});
       }
     }
   ] as Button[];

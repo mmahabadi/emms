@@ -39,6 +39,7 @@
     "react-hook-form": "^7.31.3",
     "react-inlinesvg": "^3.0.0",
     "react-intl": "^6.0.3",
+    "react-multi-date-picker": "^3.3.0",
     "react-query": "^3.39.0",
     "react-router-dom": "^6.3.0",
     "react-select": "^5.3.2",

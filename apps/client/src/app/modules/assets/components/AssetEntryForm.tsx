@@ -1,69 +1,86 @@
-import {FC, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import * as yup from "yup";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {Assets} from "@emms/models";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useIntl} from "react-intl";
-import {TextInput, useModalConfig} from "@emms/ui-kit";
-import {SelectAssetCat, SelectLocation} from "../../../helpers";
-
+import {Datepicker, getFormValues, setFormValues, TextInput, useModalConfig} from "@emms/ui-kit";
+import {SelectAsset, SelectAssetCat, SelectLocation, SelectOrg} from "../../../helpers";
 
 const formSchema = yup.object().shape({
-  assetCatId: yup.string().required(),
+  assetCatId: yup.object().required(),
   code: yup.string().required(),
-  locationId: yup.string(),
+  locationId: yup.object().nullable(),
   name: yup.string().required(),
-  parentId: yup.string(),
-  plateNo: yup.string(),
-  invalidFrom: yup.string(),
+  parentId: yup.object().nullable(),
+  plateNo: yup.string().nullable(),
+  invalidFrom: yup.string().nullable(),
 });
 
 export const AssetEntryForm: FC = () => {
   const intl = useIntl();
-  const {updateConfig: updateModalConfig} = useModalConfig();
+  const {updateConfig: updateModalConfig, config: {selectedItem}} = useModalConfig();
   const form = useForm<Assets>({
-    resolver: yupResolver(formSchema)
+    resolver: yupResolver(formSchema),
   });
-  const {handleSubmit, formState: {isSubmitting}} = form;
-  const [isLoading] = useState(true);
+  const {handleSubmit, formState: {isSubmitting, errors}} = form;
+  const [isLoading, setLoading] = useState(false);
+
+  console.log('errors', errors, selectedItem);
+
+
+  useEffect(() => {
+    prepareEditForm();
+  }, [selectedItem]);
+
+  const prepareEditForm = () => {
+    const values = {
+      ...selectedItem,
+      invalidFrom: '2022-07-05',//selectedItem?.invalid_from,
+      plateNo: selectedItem?.plate_no,
+    };
+    delete values.invalid_from;
+    delete values.plate_no;
+    console.log('update form ', values)
+    setFormValues(form, values);
+  }
+
   const onSubmit: SubmitHandler<Assets> = async (values) => {
-    console.log(values)
+    const entry = getFormValues<Assets>(values);
+    console.log('submit', entry);
     // setLoading(true);
     // try {
-    //   const {data: auth} = await login(values);
-    //   saveAuth(auth);
-    //   const {data: user} = await getUserByToken(auth.api_token);
-    //   setCurrentUser(user)
+    //   const res = await saveAsset(entry);
+    //   console.log(res);
+    //   setLoading(false);
+    //   handleCancel();
+    //
     // } catch (error) {
-    //   console.error(error)
-    //   saveAuth(undefined)
-    //   setHasErrors(true);
+    //   console.error(error);
     //   setLoading(false);
     // }
   };
 
   const handleCancel = () => {
-    updateModalConfig({show: false});
+    updateModalConfig({show: false, selectedItem: null});
   }
-  /*
-  id: "6e0fdc1d-875f-46a6-b119-809535e85e94"
-  identity: "{}"
-  invalidFrom: null
-  orgId: "67b9ff47-4b67-4dfa-b5d5-1b5b65f4e81b"
-  parentId: "6e0fdc1d-875f-46a6-b119-809535e85e94"
-   */
+
   return (
     <form
       className='form w-100'
       onSubmit={handleSubmit(onSubmit)}
-      noValidate
     >
       <div className="row">
+        <div className="col-lg-6">
+          <SelectOrg
+            label="GENERAL.ORG"
+            name='orgId'
+            form={form}/>
+        </div>
         <div className="col-lg-6">
           <SelectAssetCat
             label="ASSETS.CAT"
             name='assetCatId'
-            vertical={true}
             required={true}
             showValidation={true}
             form={form}/>
@@ -72,7 +89,6 @@ export const AssetEntryForm: FC = () => {
           <TextInput
             label="GENERAL.CODE"
             name="code"
-            vertical={true}
             required={true}
             showValidation={true}
             form={form}/>
@@ -81,28 +97,36 @@ export const AssetEntryForm: FC = () => {
           <TextInput
             label="GENERAL.NAME"
             name="name"
-            vertical={true}
             required={true}
             showValidation={true}
+            form={form}/>
+        </div>
+        <div className="col-lg-6">
+          <SelectAsset
+            label="GENERAL.PARENT"
+            name='parentId'
             form={form}/>
         </div>
         <div className="col-lg-6">
           <SelectLocation
             label="GENERAL.LOCATION"
             name='locationId'
-            vertical={true}
-            showValidation={true}
             form={form}/>
         </div>
         <div className="col-lg-6">
           <TextInput
             label="ASSETS.PLATE_NO"
             name="plateNo"
-            vertical={true}
-
             form={form}/>
         </div>
 
+        <div className="col-lg-6">
+          <Datepicker
+            label="GENERAL.INVALID_FROM"
+            name="invalidFrom"
+            form={form}
+          />
+        </div>
       </div>
 
       <div className='text-center pt-15'>
@@ -118,14 +142,14 @@ export const AssetEntryForm: FC = () => {
           className='btn btn-primary'
         >
           <span className='indicator-label'>
-          {intl.formatMessage({id: 'GENERAL.SAVE'})}
-          </span>
+          {!(isSubmitting || isLoading) && intl.formatMessage({id: 'GENERAL.SAVE'})}
           {(isSubmitting || isLoading) && (
-             <span className='indicator-progress'>
-               Please wait...{' '}
-               <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
-             </span>
+            <>
+              {intl.formatMessage({id: 'GENERAL.LOADING'})}{' '}
+              <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
+            </>
            )}
+          </span>
         </button>
        </div>
     </form>

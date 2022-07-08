@@ -24,20 +24,13 @@ export const SelectInput: FC<any> = (props) => {
 const customStyles = {
   control: (provided: any, state: any) => ({
     ...provided,
-    backgroundColor: 'var(--bs-gray-100)',
+    backgroundColor: 'transparent',
     border: 0,
     color: 'var(--bs-gray-700)',
-    transition: 'color 0.2s ease, background-color 0.2s ease',
-    padding: '0.4rem',
     boxShadow: 'none',
     '&:hover': {
       border: 0,
-      borderColor: 'transparent',
-      boxShadow: 'none',
-      backgroundColor: '#eef3f7'
-    },
-    '&:focus': {
-      backgroundColor: '#eef3f7'
+      boxShadow: 'none'
     }
   })
 }

@@ -6,4 +6,5 @@ export type ModalConfig = {
   headerComponent?: FC;
   bodyComponent?: FC;
   isLarge?: boolean;
+  selectedItem?: any;
 }
