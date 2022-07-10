@@ -31,6 +31,7 @@
     "core-js": "^3.6.5",
     "fastify-swagger": "^5.2.0",
     "formik": "^2.2.9",
+    "jalali-moment": "^3.3.11",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.3",
     "react": "18.1.0",

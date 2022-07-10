@@ -1,4 +1,4 @@
-import {FC, PropsWithChildren, useContext, useEffect, useMemo, useState} from 'react'
+import {FC, memo, PropsWithChildren, useContext, useEffect, useMemo, useState} from 'react'
 import {useQuery} from 'react-query'
 import {useQueryRequest} from './QueryRequestProvider'
 import {createResponseContext, stringifyRequestQuery} from '../../../crud-helper/helpers';
@@ -9,7 +9,7 @@ import {useDataTableConfig} from "./TableConfigProvider";
 
 const QueryResponseContext = createResponseContext(initialQueryResponse);
 
-const QueryResponseProvider: FC<PropsWithChildren<any>> = ({children}) => {
+const QueryResponseProvider: FC<PropsWithChildren<any>> = memo(({children}) => {
   const {hasServerSidePaging, queryId, getData, cacheTime, keepPreviousData, refetchOnWindowFocus} = useDataTableConfig();
   const {state} = useQueryRequest();
   const [query, setQuery] = useState<string>(stringifyRequestQuery(state, !!hasServerSidePaging));
@@ -38,7 +38,7 @@ const QueryResponseProvider: FC<PropsWithChildren<any>> = ({children}) => {
       {children}
     </QueryResponseContext.Provider>
   )
-}
+})
 
 const useQueryResponse = () => useContext(QueryResponseContext)
 

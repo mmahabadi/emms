@@ -4,8 +4,9 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {Assets} from "@emms/models";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useIntl} from "react-intl";
-import {Datepicker, getFormValues, setFormValues, TextInput, useModalConfig} from "@emms/ui-kit";
+import {Datepicker, mapFormValues, setFormValues, TextInput, useModalConfig} from "@emms/ui-kit";
 import {SelectAsset, SelectAssetCat, SelectLocation, SelectOrg} from "../../../helpers";
+import {saveAsset} from "../core/services";
 
 const formSchema = yup.object().shape({
   assetCatId: yup.object().required(),
@@ -26,8 +27,6 @@ export const AssetEntryForm: FC = () => {
   const {handleSubmit, formState: {isSubmitting, errors}} = form;
   const [isLoading, setLoading] = useState(false);
 
-  console.log('errors', errors, selectedItem);
-
 
   useEffect(() => {
     prepareEditForm();
@@ -36,32 +35,28 @@ export const AssetEntryForm: FC = () => {
   const prepareEditForm = () => {
     const values = {
       ...selectedItem,
-      invalidFrom: '2022-07-05',//selectedItem?.invalid_from,
+      invalidFrom: selectedItem?.invalid_from,
       plateNo: selectedItem?.plate_no,
     };
     delete values.invalid_from;
     delete values.plate_no;
-    console.log('update form ', values)
     setFormValues(form, values);
   }
 
   const onSubmit: SubmitHandler<Assets> = async (values) => {
-    const entry = getFormValues<Assets>(values);
-    console.log('submit', entry);
-    // setLoading(true);
-    // try {
-    //   const res = await saveAsset(entry);
-    //   console.log(res);
-    //   setLoading(false);
-    //   handleCancel();
-    //
-    // } catch (error) {
-    //   console.error(error);
-    //   setLoading(false);
-    // }
+    const entry = mapFormValues<Assets>(values);
+    setLoading(true);
+    try {
+      await saveAsset(entry);
+      setLoading(false);
+      closeModal();
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
   };
 
-  const handleCancel = () => {
+  const closeModal = () => {
     updateModalConfig({show: false, selectedItem: null});
   }
 
@@ -133,7 +128,7 @@ export const AssetEntryForm: FC = () => {
         <button
           type='reset'
           className='btn btn-light me-3'
-          onClick={handleCancel}
+          onClick={closeModal}
         >
           {intl.formatMessage({id: 'GENERAL.CANCEL'})}
         </button>

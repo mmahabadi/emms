@@ -9,7 +9,6 @@ export const getAssets = async (query: string) => {
   return await axios.get(`${NX_REACT_APP_API_URL}/asset/all/${orgId}?${query}`);
 }
 
-//d9e4cd7d-3bad-4f2a-8a46-aa482da880e0
 export const getAsset = async (id: string) => {
   return await axios.get(`${NX_REACT_APP_API_URL}/asset/${id}`);
 }

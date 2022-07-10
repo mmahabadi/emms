@@ -43,7 +43,7 @@ const withForm = (Component: any) => {
   }
 }
 
-function getFormValues<T>(values: T): T {
+function mapFormValues<T>(values: T): T {
   const entry = {} as T;
   Object.entries(values).forEach(([key, value]) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -67,4 +67,4 @@ function setFormValues<T>(form: any, values: T): void {
   }
 }
 
-export {withForm, getFormValues, setFormValues}
+export {withForm, mapFormValues, setFormValues}
