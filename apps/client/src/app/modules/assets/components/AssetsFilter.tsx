@@ -1,39 +1,33 @@
 import {FC} from 'react';
-import {useIntl} from "react-intl";
-import {SelectAssetCat} from "../../../helpers";
-import {SelectLocation} from "../../../helpers/components/SelectLocation/SelectLocation";
+import {SelectAssetCat, SelectLocation} from "../../../helpers";
+import {UseFormReturn} from "react-hook-form/dist/types";
+import {TextInput} from "@emms/ui-kit";
 
-export const AssetsFilter: FC<any> = ({register, control}) => {
-  const intl = useIntl();
-
+type Props = {
+  form: UseFormReturn
+}
+export const AssetsFilter: FC<Props> = ({form}) => {
   return (
     <>
-      <div className='mb-10'>
-        <label className='form-label fs-6 fw-bold'>{intl.formatMessage({id: `GENERAL.CODE`})}:</label>
-        <input
-          {...register("code")}
-          type="text"
-          className={'form-control form-control-lg form-control-solid'}
-          autoComplete="off"
-        />
-      </div>
-      <div className='mb-10'>
-        <label className='form-label fs-6 fw-bold'>{intl.formatMessage({id: `GENERAL.NAME`})}:</label>
-        <input
-          {...register("name")}
-          type="text"
-          className={'form-control form-control-lg form-control-solid'}
-          autoComplete="off"
-        />
-      </div>
-      <div className='mb-10'>
-        <label className='form-label fs-6 fw-bold'>{intl.formatMessage({id: `ASSETS.CAT`})}:</label>
-        <SelectAssetCat name='cat' control={control}/>
-      </div>
-      <div className='mb-10'>
-        <label className='form-label fs-6 fw-bold'>{intl.formatMessage({id: `GENERAL.LOCATION`})}:</label>
-        <SelectLocation name='location' control={control}/>
-      </div>
+      <TextInput
+        label="GENERAL.CODE"
+        name="code"
+        form={form}/>
+
+      <TextInput
+        label="GENERAL.NAME"
+        name="name"
+        form={form}/>
+
+      <SelectAssetCat
+        label="ASSETS.CAT"
+        name='cat'
+        form={form}/>
+
+      <SelectLocation
+        label="GENERAL.LOCATION"
+        name='location'
+        form={form}/>
 
   </>
   )

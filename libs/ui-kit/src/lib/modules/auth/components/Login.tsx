@@ -36,16 +36,24 @@ export function Login() {
     setLoading(true);
     try {
       const {data: auth} = await login(values);
-      saveAuth(auth);
-      const {data: user} = await getUserByToken(auth.api_token);
-      setCurrentUser(user)
+      if (auth) {
+        saveAuth(auth);
+        const {data: user} = await getUserByToken(auth.api_token);
+        setCurrentUser(user)
+      } else {
+        failedLogin();
+      }
     } catch (error) {
       console.error(error)
-      saveAuth(undefined)
-      setHasErrors(true);
-      setLoading(false);
+      failedLogin();
     }
   };
+
+  const failedLogin = () => {
+    saveAuth(undefined)
+    setHasErrors(true);
+    setLoading(false);
+  }
 
   return (
     <form

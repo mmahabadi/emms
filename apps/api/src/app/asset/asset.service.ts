@@ -1,7 +1,7 @@
 import {Injectable} from "@nestjs/common";
 import {from} from "rxjs";
 import {InjectRepository} from "@nestjs/typeorm";
-import {Repository} from "typeorm";
+import {Like, Repository} from "typeorm";
 import {Asset} from "./asset.entity";
 
 @Injectable()
@@ -22,8 +22,16 @@ export class AssetService {
     }
 
     async getAllAsset(orgId: string) {
-        return await this.assetEntityRepository.find( {relations: ["org", "assetCat"], where:{
+        return await this.assetEntityRepository.find( {relations: ["org", "assetCat", "parent", "location"], where:{
             org: orgId
         }});
+    }
+
+    async search(orgId: string, q: string) {
+      return await this.assetEntityRepository.find({
+        where: {
+          name: Like(`%${q}%`)
+        }
+      });
     }
 }

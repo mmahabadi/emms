@@ -1,15 +1,15 @@
-import {Column, Entity, JoinColumn, OneToOne, PrimaryColumn, Relation} from 'typeorm';
+import {Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Relation} from 'typeorm';
 import {Org} from "../org/org.entity";
 import {Location} from "../location/location.entity";
 import {AssetCat} from "../assetCats/assetCat.entity";
-import { ApiProperty } from '@nestjs/swagger';
+import {ApiProperty} from '@nestjs/swagger';
 
 @Entity({ schema: 'mms', name: 'asset' })
 export class Asset {
   @ApiProperty({
     example: '5dc228e2-51e4-4738-9d8a-2b72edb229a4'
   })
-  @PrimaryColumn({ type: 'uuid' })
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @ApiProperty({

@@ -1,7 +1,7 @@
 import {Injectable} from "@nestjs/common";
-import {from, Observable} from "rxjs";
+import {from} from "rxjs";
 import {InjectRepository} from "@nestjs/typeorm";
-import {Repository} from "typeorm";
+import {Like, Repository} from "typeorm";
 import {Org} from "./org.entity";
 
 @Injectable()
@@ -30,4 +30,12 @@ export class OrgService {
         }
     }
 
+  async search(q: string) {
+    return await this.orgRepository.find({
+      where: {
+        name: Like(`%${q}%`)
+      },
+
+    });
+  }
 }

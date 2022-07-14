@@ -23,7 +23,7 @@ const TableFilter = () => {
     return <></>
   }
 
-  const { handleSubmit, register, control } = useForm();
+  const form = useForm();
 
   const onSubmit: SubmitHandler<any> = async (values) => {
       updateState({
@@ -57,11 +57,11 @@ const TableFilter = () => {
         <div className='px-7 py-5' data-kt-user-table-filter='form'>
           <form
             className='form w-100'
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={form.handleSubmit(onSubmit)}
             onReset={resetData}
           >
 
-            <FilterComponent register={register} control={control}/>
+            <FilterComponent form={form}/>
 
             <div className='d-flex justify-content-end'>
               <button
