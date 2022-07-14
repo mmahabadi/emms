@@ -36,16 +36,24 @@ export function Login() {
     setLoading(true);
     try {
       const {data: auth} = await login(values);
-      saveAuth(auth);
-      const {data: user} = await getUserByToken(auth.api_token);
-      setCurrentUser(user)
+      if (auth) {
+        saveAuth(auth);
+        const {data: user} = await getUserByToken(auth.api_token);
+        setCurrentUser(user)
+      } else {
+        failedLogin();
+      }
     } catch (error) {
       console.error(error)
-      saveAuth(undefined)
-      setHasErrors(true);
-      setLoading(false);
+      failedLogin();
     }
   };
+
+  const failedLogin = () => {
+    saveAuth(undefined)
+    setHasErrors(true);
+    setLoading(false);
+  }
 
   return (
     <form
@@ -139,7 +147,7 @@ export function Login() {
           {!loading && <span className='indicator-label'>{intl.formatMessage({id: 'AUTH.LOGIN.BUTTON'})}</span>}
           {loading && (
             <span className='indicator-progress' style={{display: 'block'}}>
-              {intl.formatMessage({id: 'GENERAL.WAIT_DESCRIPTION'})}
+              {intl.formatMessage({id: 'GENERAL.LOADING'})}
               <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
             </span>
           )}

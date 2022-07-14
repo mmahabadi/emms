@@ -2,18 +2,18 @@
 import React, {FC} from 'react'
 import {useIntl} from 'react-intl'
 import {
-  PageTitle,
-  MixedWidget2,
-  MixedWidget10,
-  MixedWidget11,
   ListsWidget2,
   ListsWidget3,
   ListsWidget4,
   ListsWidget5,
   ListsWidget6,
-  TablesWidget5,
-  TablesWidget10,
+  MixedWidget10,
+  MixedWidget11,
+  MixedWidget2,
   MixedWidget8,
+  PageTitle,
+  TablesWidget10,
+  TablesWidget5,
 } from '@emms/ui-kit'
 
 const DashboardPage: FC = () => (
@@ -92,7 +92,7 @@ const DashboardWrapper: FC = () => {
   return (
     <>
       <PageTitle breadcrumbs={[]}>{intl.formatMessage({id: 'MENU.DASHBOARD'})}</PageTitle>
-      <DashboardPage />
+      {/*<DashboardPage />*/}
     </>
   )
 }

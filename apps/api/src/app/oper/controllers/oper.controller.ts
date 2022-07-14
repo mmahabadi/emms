@@ -1,7 +1,7 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { OperService } from '../services/oper.service';
-import { OperPost } from '../models/post.interface';
-import {Observable, throwError} from 'rxjs';
+import {Body, Controller, Post} from '@nestjs/common';
+import {OperService} from '../services/oper.service';
+import {OperPost} from '../models/post.interface';
+import {Observable} from 'rxjs';
 import {AuthModel, LoginInputs} from "@emms/models";
 import {JwtService} from "@nestjs/jwt";
 
@@ -16,15 +16,26 @@ export class OperController {
   @Post('login')
   async login(@Body() entry: LoginInputs): Promise<AuthModel> {
     const loginParam = {
-      mobileNumber: entry.mobileNumber || entry.username,
+      mobileNumber: entry.username,
       password: entry.password,
     };
     const result: OperPost = await this.operService.login(loginParam);
+    console.log(result)
     if (result) {
       result.token = this.jwtService.sign({id: result.id, roles: ['admin']});
       // reply.send(result);
       return {
-        api_token :result.token
+        email: result.email,
+        extendedData: result.extended_data,
+        id: result.id,
+        lastname: result.lastname,
+        mobileNumber: result.mobile_number,
+        name: result.name,
+        orgs: result.orgs,
+        password: result.password,
+        username: "",
+        api_token :result.token,
+        refreshToken:result.token
       };
     }
      pause(500);//this pause is to make the life of hacker harder for brute-force attack

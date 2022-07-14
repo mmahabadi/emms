@@ -1,6 +1,5 @@
 import axios from 'axios'
-import {UserModel} from './_models'
-import {AuthModel, LoginInputs} from "@emms/models";
+import {AuthModel, LoginInputs, UserModel} from "@emms/models";
 
 const {NX_REACT_APP_API_URL: API_URL} = process.env
 
