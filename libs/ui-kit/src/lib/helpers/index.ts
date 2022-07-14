@@ -11,3 +11,4 @@ export * from './crud-helper/helpers';
 export * from './crud-helper/models';
 export * from './components/fields';
 export * from './hoc';
+export * from './core';

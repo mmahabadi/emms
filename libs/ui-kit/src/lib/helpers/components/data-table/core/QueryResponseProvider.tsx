@@ -6,12 +6,14 @@ import {initialQueryResponse, initialQueryState} from '../../../crud-helper/mode
 import {PaginationLink, PaginationState} from "@emms/models";
 import {useIntl} from "react-intl";
 import {useDataTableConfig} from "./TableConfigProvider";
+import {useAppState} from "@emms/ui-kit";
 
 const QueryResponseContext = createResponseContext(initialQueryResponse);
 
 const QueryResponseProvider: FC<PropsWithChildren<any>> = memo(({children}) => {
   const {hasServerSidePaging, queryId, getData, cacheTime, keepPreviousData, refetchOnWindowFocus} = useDataTableConfig();
   const {state} = useQueryRequest();
+  const {appState: {refetchGridData}, updateAppState} = useAppState();
   const [query, setQuery] = useState<string>(stringifyRequestQuery(state, !!hasServerSidePaging));
   const updatedQuery = useMemo(() => stringifyRequestQuery(state, !!hasServerSidePaging), [state]);
 
@@ -19,7 +21,7 @@ const QueryResponseProvider: FC<PropsWithChildren<any>> = memo(({children}) => {
     if (query !== updatedQuery) {
       setQuery(updatedQuery)
     }
-  }, [updatedQuery])
+  }, [updatedQuery]);
 
   const {
     isFetching,
@@ -30,8 +32,12 @@ const QueryResponseProvider: FC<PropsWithChildren<any>> = memo(({children}) => {
     () => {
       return getData(query);
     },
-    {cacheTime: Number(cacheTime) * 60 * 1000, keepPreviousData, refetchOnWindowFocus}
-  )
+    {cacheTime: Number(cacheTime) * 60 * 1000, staleTime: 2 * 60 * 1000, keepPreviousData, refetchOnWindowFocus}
+  );
+
+  if (refetch.toString() !== refetchGridData.toString()){
+    updateAppState({refetchGridData: refetch});
+  }
 
   return (
     <QueryResponseContext.Provider value={{isLoading: isFetching, refetch, response, query, hasServerSidePaging}}>

@@ -4,7 +4,7 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {Assets} from "@emms/models";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useIntl} from "react-intl";
-import {Datepicker, mapFormValues, setFormValues, TextInput, useModalConfig} from "@emms/ui-kit";
+import {Datepicker, mapFormValues, setFormValues, TextInput, useAppState, useModalConfig} from "@emms/ui-kit";
 import {SelectAsset, SelectAssetCat, SelectLocation, SelectOrg} from "../../../helpers";
 import {saveAsset} from "../core/services";
 
@@ -24,8 +24,9 @@ export const AssetEntryForm: FC = () => {
   const form = useForm<Assets>({
     resolver: yupResolver(formSchema),
   });
-  const {handleSubmit, formState: {isSubmitting, errors}} = form;
+  const {handleSubmit, formState: {isSubmitting}} = form;
   const [isLoading, setLoading] = useState(false);
+  const {appState: {refetchGridData}} = useAppState();
 
 
   useEffect(() => {
@@ -50,6 +51,7 @@ export const AssetEntryForm: FC = () => {
       await saveAsset(entry);
       setLoading(false);
       closeModal();
+      refetchGridData && refetchGridData();
     } catch (error) {
       console.error(error);
       setLoading(false);
