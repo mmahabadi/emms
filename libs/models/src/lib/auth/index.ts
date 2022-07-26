@@ -1,6 +1,5 @@
 export interface LoginInputs {
   username: string;
-  mobileNumber: string;
   password: string;
 }
 

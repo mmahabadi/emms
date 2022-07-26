@@ -1,5 +1,6 @@
 import {Suspense} from 'react';
 import {
+  AppStateProvider,
   AuthInit,
   I18nProvider,
   LayoutProvider,
@@ -16,11 +17,13 @@ export function App() {
       <I18nProvider>
         <LayoutProvider>
           <AuthInit>
-            <ModalConfigProvider>
-              <Outlet />
-              <MasterInit />
-              <Modal/>
-            </ModalConfigProvider>
+            <AppStateProvider>
+              <ModalConfigProvider>
+                <Outlet />
+                <MasterInit />
+                <Modal/>
+              </ModalConfigProvider>
+            </AppStateProvider>
           </AuthInit>
         </LayoutProvider>
       </I18nProvider>

@@ -1,4 +1,4 @@
-import {getUserOrgId} from "../../../UserHelper";
+import {getUserOrgId} from "../../UserHelper";
 import axios from "axios";
 
 const {NX_REACT_APP_API_URL} = process.env;

@@ -5,6 +5,12 @@ export type Assets = Entity & {
   name: string;
   cat: string;
   assetCat: AssetCategory;
+  orgId?: ID;
+  assetCatId?: ID;
+  parentId?: ID;
+  locationId?: ID;
+  plateNo?: string;
+  invalidFrom?: string;
 }
 
 export type AssetCategory = Entity & {

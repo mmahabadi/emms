@@ -25,6 +25,9 @@ const DataTableContainer: FC = () => {
     data: memoizedData as any
   });
 
+  const showActions = !!(actions && actions.length > 0);
+  const colSpan = headers?.length + +showActions + 1;
+
   return (
     <KTCardBody className='py-4'>
       <div className='table-responsive'>
@@ -39,7 +42,7 @@ const DataTableContainer: FC = () => {
               {headers.map((column: ColumnInstance) => (
                 <HeaderColumn key={column.id} column={column} />
               ))}
-              {actions && actions.length > 0 &&
+              {showActions &&
                 <th className='text-end min-w-100px'>
                   {intl.formatMessage({id: 'DATATABLE.ACTIONS'})}
                 </th>
@@ -50,16 +53,17 @@ const DataTableContainer: FC = () => {
             {rows.length > 0 ? (
               rows.map((row: Row, i) => {
                 prepareRow(row)
+                const rowNo = (i + 1) + ((pagination.page - 1) * pagination.pageSize);
                 return <TableRow
                   key={`row-${i}-${row.id}`}
                   row={row}
-                  rowNumber={(i + 1) + ((pagination.page - 1) * pagination.pageSize)}
+                  rowNumber={rowNo}
                   actions={actions}
                 />
               })
             ) : (
               <tr>
-                <td colSpan={headers?.length}>
+                <td colSpan={colSpan}>
                   <div className='d-flex text-center w-100 align-content-center justify-content-center'>
                     {intl.formatMessage({id: 'DATATABLE.NO_RECORD'})}
                   </div>

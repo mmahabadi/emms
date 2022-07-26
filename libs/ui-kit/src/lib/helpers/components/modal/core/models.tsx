@@ -2,6 +2,7 @@ import {ModalConfig} from "@emms/models";
 
 const initialModalConfig: ModalConfig = {
   show: false,
+  isLarge: false,
   title: ''
 }
 

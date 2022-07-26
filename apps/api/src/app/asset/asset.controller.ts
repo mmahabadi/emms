@@ -1,8 +1,8 @@
-import {Body, Controller, Get, Param, Post} from '@nestjs/common';
-import { Observable } from 'rxjs';
+import {Body, Controller, Get, Param, Post, Query} from '@nestjs/common';
+import {Observable} from 'rxjs';
 import {AssetService} from "./asset.service";
 import {Asset} from "./asset.entity";
-import { ApiTags } from '@nestjs/swagger';
+import {ApiTags} from '@nestjs/swagger';
 
 @ApiTags('asset')
 @Controller('asset')
@@ -20,5 +20,11 @@ export class AssetController {
     getAll(@Param('id') id: string): Promise<Asset[]> {
         return this.assetsService.getAllAsset(id);
     }
-
+    @Get('search/:id')
+    search(
+      @Param('id') id: string,
+      @Query('q') q?: string
+    ): Promise<Asset[]> {
+        return this.assetsService.search(id, q);
+    }
 }
