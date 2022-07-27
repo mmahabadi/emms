@@ -30,7 +30,7 @@ export class OrgService {
         }
     }
 
-  async search(q: string) {
+  async search(q: string) :Promise<Org[]> {
     return await this.orgRepository.find({
       where: {
         name: Like(`%${q}%`)

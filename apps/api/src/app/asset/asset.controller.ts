@@ -17,8 +17,13 @@ export class AssetController {
         return this.assetsService.getAsset(id);
     }
     @Get('all/:id')
-    getAll(@Param('id') id: string): Promise<Asset[]> {
-        return this.assetsService.getAllAsset(id);
+    getAll(@Param('id') id: string
+           ,@Query('code') code?: string
+           ,@Query('name') name?: string
+           ,@Query('cat') assetCatId?: string
+           ,@Query('location') locationId?: string
+    ): Promise<Asset[]> {
+        return this.assetsService.getAllAsset(id, code, name, assetCatId, locationId);
     }
     @Get('search/:id')
     search(

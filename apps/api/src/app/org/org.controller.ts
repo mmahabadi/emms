@@ -14,14 +14,18 @@ export class OrgController {
     create(@Body() orgEntity: Org): Observable<Org> {
         return this.orgService.insertOrg(orgEntity);
     }
-    @Get(':id')
     @ApiBody({ type: Org })
+    @Get('/:id')
     get(@Param('id') id: string): Promise<Org> {
         return this.orgService.getOrg(id);
     }
 
-    @Get('search/:id')
-    search(@Query('q') q?: string): Promise<Org[]> {
-      return this.orgService.search(q);
+    @Get(':id/search')
+    search(
+      @Param('id') id: string,
+      @Query('q') keyword?: string,
+
+    ): Promise<Org[]> {
+      return this.orgService.search(keyword);
     }
 }
