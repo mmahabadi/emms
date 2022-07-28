@@ -15,12 +15,15 @@
   "GENERAL.CODE": "کد",
   "GENERAL.NAME": "نام",
   "GENERAL.GOODS": "کالا",
+  "GENERAL.TITLE": "تیتر",
 
   "ASSETS.ASSET": "تجهیز",
   "ASSETS.ASSETS": "تجهیزات",
   "ASSETS.ASSET.ADD": "افزودن تجهیر",
   "ASSETS.ASSET.EDIT": "ویرایش تجهیر",
   "ASSETS.CAT": "گروه تجهیز",
+  "ASSETS.CAT.ADD": "افزودن گروه تجهیز",
+  "ASSETS.CAT.EDIT": "ویرایش گروه تجهیز",
   "ASSETS.REPORT": "گزارش تجهیزات",
   "ASSETS.PLATE_NO": "شماره اموال",
 

@@ -1,10 +1,9 @@
-import {FC, useEffect, useState} from "react";
+import {FC, useEffect} from "react";
 import * as yup from "yup";
-import {SubmitHandler, useForm} from "react-hook-form";
+import {useForm} from "react-hook-form";
 import {Assets} from "@emms/models";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {useIntl} from "react-intl";
-import {Datepicker, mapFormValues, setFormValues, TextInput, useAppState, useModalConfig} from "@emms/ui-kit";
+import {Datepicker, ModalFormContainer, setFormValues, TextInput, useModalConfig} from "@emms/ui-kit";
 import {SelectAsset, SelectAssetCat, SelectLocation, SelectOrg} from "../../../helpers";
 import {saveAsset} from "../core/services";
 
@@ -19,15 +18,10 @@ const formSchema = yup.object().shape({
 });
 
 export const AssetEntryForm: FC = () => {
-  const intl = useIntl();
-  const {updateConfig: updateModalConfig, config: {selectedItem}} = useModalConfig();
+  const {config: {selectedItem}} = useModalConfig();
   const form = useForm<Assets>({
     resolver: yupResolver(formSchema),
   });
-  const {handleSubmit, formState: {isSubmitting}} = form;
-  const [isLoading, setLoading] = useState(false);
-  const {appState: {refetchGridData}} = useAppState();
-
 
   useEffect(() => {
     prepareEditForm();
@@ -44,28 +38,10 @@ export const AssetEntryForm: FC = () => {
     setFormValues(form, values);
   }
 
-  const onSubmit: SubmitHandler<Assets> = async (values) => {
-    const entry = mapFormValues<Assets>(values);
-    setLoading(true);
-    try {
-      await saveAsset(entry);
-      setLoading(false);
-      closeModal();
-      refetchGridData && refetchGridData();
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
-  };
-
-  const closeModal = () => {
-    updateModalConfig({show: false, selectedItem: null});
-  }
-
   return (
-    <form
-      className='form w-100'
-      onSubmit={handleSubmit(onSubmit)}
+    <ModalFormContainer
+      form={form}
+      onSubmit={saveAsset}
     >
       <div className="row">
         <div className="col-lg-6">
@@ -125,30 +101,6 @@ export const AssetEntryForm: FC = () => {
           />
         </div>
       </div>
-
-      <div className='text-center pt-15'>
-        <button
-          type='reset'
-          className='btn btn-light me-3'
-          onClick={closeModal}
-        >
-          {intl.formatMessage({id: 'GENERAL.CANCEL'})}
-        </button>
-        <button
-          type='submit'
-          className='btn btn-primary'
-        >
-          <span className='indicator-label'>
-          {!(isSubmitting || isLoading) && intl.formatMessage({id: 'GENERAL.SAVE'})}
-          {(isSubmitting || isLoading) && (
-            <>
-              {intl.formatMessage({id: 'GENERAL.LOADING'})}{' '}
-              <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
-            </>
-           )}
-          </span>
-        </button>
-       </div>
-    </form>
+    </ModalFormContainer>
   )
 }

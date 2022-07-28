@@ -1,3 +1,3 @@
 export * from './AssetsPage';
-export * from './components/AssetsList';
+export * from './_assets/AssetsList';
 export * from './components/AssetsHeader';
