@@ -19,7 +19,7 @@ const QueryResponseProvider: FC<PropsWithChildren<any>> = memo(({children}) => {
 
   useEffect(() => {
     if (query !== updatedQuery) {
-      setQuery(updatedQuery)
+      setQuery(updatedQuery);
     }
   }, [updatedQuery]);
 
@@ -30,14 +30,11 @@ const QueryResponseProvider: FC<PropsWithChildren<any>> = memo(({children}) => {
   } = useQuery(
     `${queryId}${query ? '&' + query : ''}`,
     () => {
+      updateAppState({refetchGridData: refetch});
       return getData(query);
     },
     {cacheTime: Number(cacheTime) * 60 * 1000, staleTime: 2 * 60 * 1000, keepPreviousData, refetchOnWindowFocus}
   );
-
-  if (refetch.toString() !== refetchGridData.toString()){
-    updateAppState({refetchGridData: refetch});
-  }
 
   return (
     <QueryResponseContext.Provider value={{isLoading: isFetching, refetch, response, query, hasServerSidePaging}}>

@@ -13,8 +13,12 @@ const ModalConfigProvider: FC<PropsWithChildren<any>> = ({children}) => {
     setConfig(updatedConfig);
   }
 
+  const closeModal = () => {
+    setConfig(initialModalProviderContext.config);
+  }
+
   return (
-    <ModalProviderContext.Provider value={{config, updateConfig}}>
+    <ModalProviderContext.Provider value={{config, updateConfig, closeModal}}>
       {children}
     </ModalProviderContext.Provider>
   );

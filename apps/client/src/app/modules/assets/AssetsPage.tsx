@@ -3,8 +3,8 @@ import {useIntl} from "react-intl";
 import {PageLink, PageTitle} from "@emms/ui-kit";
 import {Link, Outlet, Route, Routes, useLocation} from "react-router-dom";
 import {AssetsHeader} from "./components/AssetsHeader";
-import {AssetsList} from "./components/AssetsList";
-import {AssetsCategoryList} from "./components/AssetsCategoryList";
+import {AssetsList} from "./_assets/AssetsList";
+import {AssetsCategoryList} from "./_assetsCat/AssetsCategoryList";
 
 const breadCrumbs: Array<PageLink> = [
   {
@@ -45,7 +45,6 @@ const AssetsPage: FC = () => {
                       }
                       to='/assets/overview'
                     >{intl.formatMessage({id: 'MENU.ASSETS.ASSET'})}</Link>
-
                   </li>
                   <li className='nav-item'>
                     <Link
