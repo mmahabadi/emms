@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {getUserOrgId} from "../../../helpers/UserHelper";
-import {Assets} from "@emms/models";
+import {AssetCategory, Assets} from "@emms/models";
 
 const {NX_REACT_APP_API_URL} = process.env;
 
@@ -25,4 +25,10 @@ export const saveAsset = async (entry: Assets) => {
   // const isUpdating = !!entry?.id;
   // const http = isUpdating ? axios.put : axios.post;
   return await axios.post(`${NX_REACT_APP_API_URL}/asset`, entry);
+}
+
+export const saveAssetCategory = async (entry: AssetCategory) => {
+  const orgId = getUserOrgId();
+  // entry.orgId = orgId;
+  return await axios.post(`${NX_REACT_APP_API_URL}/assetCat`, entry);
 }
