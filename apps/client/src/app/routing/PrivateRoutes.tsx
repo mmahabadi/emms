@@ -13,6 +13,8 @@ const PrivateRoutes = () => {
   // const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   // const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
   const AssetsPage = lazy(() => import('../modules/assets/AssetsPage'))
+  const SettingPage = lazy(() => import('../modules/setting/SettingPage'))
+  const LocationPage = lazy(() => import('../modules/setting/components/location/LocationPage'))
 
   return (
     <Routes>
@@ -37,6 +39,22 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <AssetsPage />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='setting/*'
+          element={
+            <SuspensedView>
+              <SettingPage />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='setting/*'
+          element={
+            <SuspensedView>
+              <LocationPage />
             </SuspensedView>
           }
         />
@@ -73,7 +91,7 @@ const PrivateRoutes = () => {
         {/*  }*/}
         {/*/>*/}
         {/* Page Not Found */}
-        <Route path='*' element={<Navigate to='/error/404' />} />
+        {/*<Route path='*' element={<Navigate to='/error/404' />} />*/}
       </Route>
     </Routes>
   )

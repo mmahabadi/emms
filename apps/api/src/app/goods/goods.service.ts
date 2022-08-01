@@ -1,6 +1,6 @@
 import {Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
-import {Repository} from "typeorm";
+import {ILike, Repository} from "typeorm";
 import {Goods} from "./goods.entity";
 
 @Injectable()
@@ -20,9 +20,21 @@ export class GoodsService {
         return await this.repository.findOne(id, {relations: ["org"]});
     }
 
-    async getAllGoods(orgId: string) {
-        return await this.repository.find( {where:{
-                org: orgId
-            }});
+    async getAllGoods(orgId: string, code:string, name:string) {
+      const whereStr = {
+        org: orgId,
+        ...(code && { code: ILike(`%${code}%`)}),
+        ...(name && { name: ILike(`%${name}%`) }),
+      }
+
+      const allGoods =  this.repository.createQueryBuilder("goods")
+        .select("goods")
+        .where(whereStr)
+        .getMany();
+
+      return allGoods;
+      // return await this.repository.find( {where:{
+      //           org: orgId
+      //       }});
     }
 }

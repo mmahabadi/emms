@@ -1,6 +1,6 @@
 import {Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
-import {Like, Repository} from "typeorm";
+import {ILike, Like, Repository} from "typeorm";
 import {Location} from "./location.entity";
 
 @Injectable()
@@ -20,10 +20,22 @@ export class LocationService {
         return await this.locationEntityRepository.findOne(id, {relations: ["org", "parent"]});
     }
 
-    async getAllLocation(orgId: string) {
-        return await this.locationEntityRepository.find( {relations: ["parent"], where:{
-                org: orgId
-            }});
+    async getAllLocation(orgId: string, code:string, name:string) {
+      const whereStr = {
+        org: orgId,
+        ...(code && { code: ILike(`%${code}%`)}),
+        ...(name && { name: ILike(`%${name}%`) }),
+      }
+
+      const allLocation =  this.locationEntityRepository.createQueryBuilder("location")
+        .select("location")
+        .where(whereStr)
+        .getMany();
+
+      return allLocation;
+      // return await this.repository.find( {where:{
+      //           org: orgId
+      //       }});
     }
 
   async search(orgId: string, q: string) {

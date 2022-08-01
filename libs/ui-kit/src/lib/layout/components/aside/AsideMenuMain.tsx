@@ -31,6 +31,21 @@ export function AsideMenuMain() {
           title={intl.formatMessage({id: 'MENU.ASSETS.CATEGORY'})}
           hasBullet={true} />
       </AsideMenuItemWithSub>
+      <AsideMenuItemWithSub
+        to='/setting'
+        title={intl.formatMessage({id: 'MENU.SETTING'})}
+        icon='/media/icons/duotune/general/gen017.svg'
+        fontIcon='bi-person'
+      >
+        <AsideMenuItem
+          to='/setting/overview'
+          title={intl.formatMessage({id: 'MENU.SETTING.BASE'})}
+          hasBullet={true} />
+        <AsideMenuItem
+          to='/setting/location'
+          title={intl.formatMessage({id: 'MENU.SETTING.LOCATION'})}
+          hasBullet={true} />
+      </AsideMenuItemWithSub>
 
       {/*<AsideMenuItem*/}
       {/*  to='/builder'*/}
