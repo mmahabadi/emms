@@ -1,31 +1,31 @@
 import {FC, useEffect, useState} from "react";
 import * as yup from "yup";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {Goods} from "@emms/models";
+import {Location} from "@emms/models";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useIntl} from "react-intl";
 import {Datepicker, mapFormValues, setFormValues, TextInput, useAppState, useModalConfig} from "@emms/ui-kit";
-import {SelectOrg} from "../../../../helpers";
-import {saveGoods} from "../../core/services";
+import {SelectLocation, SelectOrg} from "../../../../helpers";
+import {saveLocation} from "../../core/services";
 import {v4 as uuidv4} from "uuid";
 
 const formSchema = yup.object().shape({
   org: yup.object().required(),
   code: yup.string().required(),
   name: yup.string().required(),
+  parent: yup.string().nullable(),
   invalidFrom: yup.string().nullable(),
 });
 
-export const GoodsEntryForm: FC = () => {
+export const LocationEntryForm: FC = () => {
   const intl = useIntl();
   const {updateConfig: updateModalConfig, config: {selectedItem}} = useModalConfig();
-  const form = useForm<Goods>({
+  const form = useForm<Location>({
     resolver: yupResolver(formSchema),
   });
   const {handleSubmit, formState: {isSubmitting}} = form;
   const [isLoading, setLoading] = useState(false);
   const {appState: {refetchGridData}} = useAppState();
-
 
   useEffect(() => {
     prepareEditForm();
@@ -41,11 +41,12 @@ export const GoodsEntryForm: FC = () => {
     setFormValues(form, values);
   }
 
-  const onSubmit: SubmitHandler<Goods> = async (values) => {
-    const entry = mapFormValues<Goods>(values);
+  const onSubmit: SubmitHandler<Location> = async (values) => {
+    console.log('asdasdasdasdasdas')
+    const entry = mapFormValues<Location>(values);
     setLoading(true);
     try {
-      await saveGoods(entry);
+      await saveLocation(entry);
       setLoading(false);
       closeModal();
       refetchGridData && refetchGridData();
@@ -60,6 +61,7 @@ export const GoodsEntryForm: FC = () => {
   }
 
   return (
+
     <form
       className='form w-100'
       onSubmit={handleSubmit(onSubmit)}
@@ -72,7 +74,6 @@ export const GoodsEntryForm: FC = () => {
             required={true}
             form={form}/>
         </div>
-
         <div className="col-lg-6">
           <TextInput
             label="GENERAL.CODE"
@@ -96,6 +97,13 @@ export const GoodsEntryForm: FC = () => {
             form={form}
           />
         </div>
+        <div className="col-lg-6">
+          <SelectLocation
+            label="GENERAL.PARENT"
+            name='parent'
+            form={form}/>
+        </div>
+
       </div>
 
       <div className='text-center pt-15'>

@@ -4,6 +4,7 @@
   "MENU.ASSETS.ASSET": "تجهیز",
   "MENU.ASSETS.CATEGORY": "گروه تجهیز",
   "MENU.SETTING": "نتظیمات",
+  "MENU.SETTING.BASE": "پایه",
   "MENU.SETTING.GOODS": "کالا",
 
   "GENERAL.LOADING": "لطفا صبر کنید...",
@@ -18,6 +19,7 @@
   "GENERAL.NAME": "نام",
   "GENERAL.GOODS": "کالا",
   "GENERAL.TITLE": "تیتر",
+  "GENERAL.LOCATION": "مکان",
 
   "ASSETS.ASSET": "تجهیز",
   "ASSETS.ASSETS": "تجهیزات",
@@ -165,5 +167,10 @@
   "AUTH.VALIDATION.REQUIRED_FIELD": "Required field",
   "AUTH.VALIDATION.MIN_LENGTH_FIELD": "Minimum field length:",
   "AUTH.VALIDATION.MAX_LENGTH_FIELD": "Maximum field length:",
-  "AUTH.VALIDATION.INVALID_FIELD": "Field is not valid"
+  "AUTH.VALIDATION.INVALID_FIELD": "Field is not valid",
+
+  "SETTING.LOCATION.ADD": "افزودن مکان",
+  "SETTING.LOCATION.EDIT": "ویرایش مکان",
+  "SETTING.GOODS.ADD": "افزودن کالا",
+  "SETTING.GOODS.EDIT": "ویرایش کالا"
 }

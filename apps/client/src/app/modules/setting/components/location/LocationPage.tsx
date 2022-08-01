@@ -2,14 +2,13 @@ import React, {FC} from "react";
 import {useIntl} from "react-intl";
 import {PageLink, PageTitle} from "@emms/ui-kit";
 import {Link, Outlet, Route, Routes, useLocation} from "react-router-dom";
-import {GoodsList} from "./components/goods/GoodsList";
-import {LocationList} from "./components/location/LocationList";
-import {SettingHeader} from "./components/SettingHeader";
+import {LocationList} from "../../components/location/LocationList";
+import {LocationHeader} from "../../components/location/LocationHeader";
 
 const breadCrumbs: Array<PageLink> = [
   {
-    title: 'MENU.SETTING',
-    path: '/setting/overview',
+    title: 'MENU.LOCATION',
+    path: '/setting/location',
     isSeparator: false,
     isActive: false,
   },
@@ -21,7 +20,7 @@ const breadCrumbs: Array<PageLink> = [
   },
 ]
 
-const SettingPage: FC = () => {
+const LocationPage: FC = () => {
   const intl = useIntl();
   const location = useLocation();
 
@@ -30,7 +29,7 @@ const SettingPage: FC = () => {
       <Route
         element={
           <>
-            <SettingHeader/>
+            <LocationHeader/>
             <div className='card card-custom'>
               <div className='card-header card-header-stretch overflow-auto'>
                 <ul
@@ -41,11 +40,20 @@ const SettingPage: FC = () => {
                     <Link
                       className={
                         `nav-link cursor-pointer ` +
-                        (location.pathname === '/setting/overview' && 'active')
+                        (location.pathname === '/setting/location' && 'active')
                       }
-                      to='/setting/overview'
-                    >{intl.formatMessage({id: 'MENU.SETTING.GOODS'})}</Link>
+                      to='/setting/location'
+                    >{intl.formatMessage({id: 'MENU.SETTING.LOCATION'})}</Link>
 
+                  </li>
+                  <li className='nav-item'>
+                    <Link
+                      className={
+                        `nav-link cursor-pointer ` +
+                        (location.pathname === '/setting/location' && 'active')
+                      }
+                      to='/setting/location'
+                    >{intl.formatMessage({id: 'MENU.SETTING.LOCATION'})}</Link>
                   </li>
                 </ul>
               </div>
@@ -66,15 +74,6 @@ const SettingPage: FC = () => {
           path='overview'
           element={
             <>
-              <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.BASE'})}</PageTitle>
-              <GoodsList/>
-            </>
-          }
-        />
-        <Route
-          path='location'
-          element={
-            <>
               <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.LOCATION'})}</PageTitle>
               <LocationList/>
             </>
@@ -85,4 +84,4 @@ const SettingPage: FC = () => {
   )
 }
 
-export default SettingPage
+export default LocationPage
