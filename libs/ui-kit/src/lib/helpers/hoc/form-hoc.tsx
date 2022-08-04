@@ -59,7 +59,7 @@ function setFormValues<T>(form: any, values: T): void {
       if (value && typeof value == 'object') {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        setValue(`${key}Id`, {id: value?.id, name: value?.name});
+        setValue(`${key}`, {id: value?.id, name: value?.name});
       } else {
         setValue(key, value);
       }

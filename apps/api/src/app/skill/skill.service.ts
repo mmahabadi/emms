@@ -1,6 +1,6 @@
 import {Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
-import {Repository} from "typeorm";
+import {ILike, Repository} from "typeorm";
 import {Skill} from "./skill.entity";
 
 @Injectable()
@@ -20,9 +20,22 @@ export class SkillService {
         return await this.repository.findOne(id, {relations: ["org"]});
     }
 
-    async getAllSkill(orgId: string) {
-        return await this.repository.find( {where:{
-                org: orgId
-            }});
+    async getAllSkill(orgId: string, code:string, name:string) {
+      const whereStr = {
+      org: orgId,
+      ...(code && { code: ILike(`%${code}%`)}),
+      ...(name && { name: ILike(`%${name}%`) }),
+    }
+
+      const allGoods =  this.repository.createQueryBuilder("skill")
+        .select("skill")
+        .innerJoinAndSelect("skill.org", "org")
+        .where(whereStr)
+        .getMany();
+
+      return allGoods;
+      // return await this.repository.find( {where:{
+      //           org: orgId
+      //       }});
     }
 }

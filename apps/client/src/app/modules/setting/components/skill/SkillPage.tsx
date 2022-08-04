@@ -2,13 +2,13 @@ import React, {FC} from "react";
 import {useIntl} from "react-intl";
 import {PageLink, PageTitle} from "@emms/ui-kit";
 import {Link, Outlet, Route, Routes, useLocation} from "react-router-dom";
-import {LocationList} from "../../components/location/LocationList";
-import {LocationHeader} from "../../components/location/LocationHeader";
+import {SkillList} from "../skill/SkillList";
+import {SkillHeader} from "../skill/SkillHeader";
 
 const breadCrumbs: Array<PageLink> = [
   {
-    title: 'MENU.LOCATION',
-    path: '/setting/location',
+    title: 'MENU.SKILL',
+    path: '/setting/skill',
     isSeparator: false,
     isActive: false,
   },
@@ -20,7 +20,7 @@ const breadCrumbs: Array<PageLink> = [
   },
 ]
 
-const LocationPage: FC = () => {
+const SkillPage: FC = () => {
   const intl = useIntl();
   const location = useLocation();
 
@@ -29,7 +29,7 @@ const LocationPage: FC = () => {
       <Route
         element={
           <>
-            <LocationHeader/>
+            <SkillHeader/>
             <div className='card card-custom'>
               <div className='card-header card-header-stretch overflow-auto'>
                 <ul
@@ -40,20 +40,20 @@ const LocationPage: FC = () => {
                     <Link
                       className={
                         `nav-link cursor-pointer ` +
-                        (location.pathname === '/setting/location' && 'active')
+                        (location.pathname === '/setting/skill' && 'active')
                       }
                       to='/setting/location'
-                    >{intl.formatMessage({id: 'MENU.SETTING.LOCATION'})}</Link>
+                    >{intl.formatMessage({id: 'MENU.SETTING.SKILL'})}</Link>
 
                   </li>
                   <li className='nav-item'>
                     <Link
                       className={
                         `nav-link cursor-pointer ` +
-                        (location.pathname === '/setting/location' && 'active')
+                        (location.pathname === '/setting/skill' && 'active')
                       }
-                      to='/setting/location'
-                    >{intl.formatMessage({id: 'MENU.SETTING.LOCATION'})}</Link>
+                      to='/setting/skill'
+                    >{intl.formatMessage({id: 'MENU.SETTING.SKILL'})}</Link>
                   </li>
                 </ul>
               </div>
@@ -71,11 +71,11 @@ const LocationPage: FC = () => {
         }
       >
         <Route
-          path='location'
+          path='skill'
           element={
             <>
-              <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.LOCATION'})}</PageTitle>
-              <LocationList/>
+              <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.SKILL'})}</PageTitle>
+              <SkillList/>
             </>
           }
         />
@@ -84,4 +84,4 @@ const LocationPage: FC = () => {
   )
 }
 
-export default LocationPage
+export default SkillPage

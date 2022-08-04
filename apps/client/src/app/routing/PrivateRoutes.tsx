@@ -14,7 +14,8 @@ const PrivateRoutes = () => {
   // const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
   const AssetsPage = lazy(() => import('../modules/assets/AssetsPage'))
   const SettingPage = lazy(() => import('../modules/setting/SettingPage'))
-  const LocationPage = lazy(() => import('../modules/setting/components/location/LocationPage'))
+  // const LocationPage = lazy(() => import('../modules/setting/components/location/LocationPage'))
+  // const SkillPage = lazy(() => import('../modules/setting/components/skill/SkillPage'))
 
   return (
     <Routes>
@@ -24,7 +25,7 @@ const PrivateRoutes = () => {
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
         <Route path='builder' element={<BuilderPageWrapper />} />
-        <Route path='menu-test' element={<MenuTestPage />} />
+        {/*<Route path='menu-test' element={<MenuTestPage />} />*/}
         {/* Lazy Modules */}
         <Route
           path='crafted/pages/profile/*'
@@ -50,14 +51,22 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
-        <Route
-          path='setting/*'
-          element={
-            <SuspensedView>
-              <LocationPage />
-            </SuspensedView>
-          }
-        />
+        {/*<Route*/}
+        {/*  path='setting/location'*/}
+        {/*  element={*/}
+        {/*    <SuspensedView>*/}
+        {/*      <LocationPage />*/}
+        {/*    </SuspensedView>*/}
+        {/*  }*/}
+        {/*/>*/}
+        {/*<Route*/}
+        {/*  path='setting/skill'*/}
+        {/*  element={*/}
+        {/*    <SuspensedView>*/}
+        {/*      <SkillPage />*/}
+        {/*    </SuspensedView>*/}
+        {/*  }*/}
+        {/*/>*/}
         {/*<Route*/}
         {/*  path='crafted/widgets/*'*/}
         {/*  element={*/}

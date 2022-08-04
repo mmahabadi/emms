@@ -2,6 +2,8 @@ import {Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
 import {ILike, Like, Repository} from "typeorm";
 import {Location} from "./location.entity";
+import {PaginatedResponse} from "../util/pagination-response";
+import {Goods} from "../goods/goods.entity";
 
 @Injectable()
 export class LocationService {
@@ -20,22 +22,25 @@ export class LocationService {
         return await this.locationEntityRepository.findOne(id, {relations: ["org", "parent"]});
     }
 
-    async getAllLocation(orgId: string, code:string, name:string) {
+    async getAllLocation(orgId: string, code:string, name:string, page: number, pageSize: number) {
+      const skip = (page - 1) * pageSize;
       const whereStr = {
         org: orgId,
-        ...(code && { code: ILike(`%${code}%`)}),
-        ...(name && { name: ILike(`%${name}%`) }),
+        ...(code && {code: ILike(`%${code}%`)}),
+        ...(name && {name: ILike(`%${name}%`)}),
       }
 
-      const allLocation =  this.locationEntityRepository.createQueryBuilder("location")
+      const allLocation = await this.locationEntityRepository.createQueryBuilder("location")
         .select("location")
+        .innerJoinAndSelect("location.org", "org")
         .where(whereStr)
-        .getMany();
+        .take(pageSize)
+        .skip(skip)
+        .getManyAndCount();
 
-      return allLocation;
-      // return await this.repository.find( {where:{
-      //           org: orgId
-      //       }});
+      const [data, total] = allLocation;
+      return new PaginatedResponse<Location[]>(data, page, total, pageSize);
+
     }
 
   async search(orgId: string, q: string) {

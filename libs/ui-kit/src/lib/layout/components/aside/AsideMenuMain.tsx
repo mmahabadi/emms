@@ -45,6 +45,7 @@ export function AsideMenuMain() {
           to='/setting/location'
           title={intl.formatMessage({id: 'MENU.SETTING.LOCATION'})}
           hasBullet={true} />
+
       </AsideMenuItemWithSub>
 
       {/*<AsideMenuItem*/}

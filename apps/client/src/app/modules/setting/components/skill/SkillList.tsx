@@ -1,16 +1,16 @@
 import {FC, useEffect} from "react";
-import {getLocations} from "../../core/services";
+import {getSkills} from "../../core/services";
 import {DataTable, KTSVG, useModalConfig} from "@emms/ui-kit";
-import {Assets, Button, DataTableColumn} from "@emms/models";
+import {Skill, Button, DataTableColumn} from "@emms/models";
 import {QUERIES} from "../../../../helpers/queries";
-import {LocationFilter} from "./../location/LocationFilter";
-import {LocationEntryForm} from "./LocationEntryForm";
+import {SkillFilter} from "../skill/SkillFilter";
+import {SkillEntryForm} from "../skill/SkillEntryForm";
 
-export const LocationList: FC = () => {
+export const SkillList: FC = () => {
   const {updateConfig: updateModalConfig} = useModalConfig();
 
   useEffect(() => {
-    updateModalConfig({bodyComponent: LocationEntryForm, isLarge: true});
+    updateModalConfig({bodyComponent: SkillEntryForm, isLarge: true});
   }, []);
 
   const columns = [
@@ -32,8 +32,8 @@ export const LocationList: FC = () => {
   const actions = [
     {
       icon: 'edit',
-      click: (item: Assets) => {
-        updateModalConfig({show: true, title: 'SETTING.LOCATION.EDIT', selectedItem: item});
+      click: (item: Skill) => {
+        updateModalConfig({show: true, title: 'SETTING.SKILL.EDIT', selectedItem: item});
       }
     }
   ] as Button[];
@@ -41,12 +41,11 @@ export const LocationList: FC = () => {
   return (
     <DataTable
       columns={columns}
-      queryId={QUERIES.LOCATION_LIST}
-      getData={getLocations}
+      queryId={QUERIES.SKILL_LIST}
+      getData={getSkills}
       cacheTime={15}
       toolbar={toolbar}
-      filterComponent={LocationFilter}
-      hasServerSidePaging={true}
+      filterComponent={SkillFilter}
       actions={actions}
     />
   )

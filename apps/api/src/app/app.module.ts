@@ -37,7 +37,8 @@ import {OperModule} from "./oper/oper.module";
        database: process.env.NX_API_DB_DATABASE,
        autoLoadEntities: true,
        synchronize: false,
-       "entities": [
+       logging: true,
+       entities: [
          Activity,
          Asset,
          AssetCat,

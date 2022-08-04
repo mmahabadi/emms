@@ -3,6 +3,7 @@ import {LocationService} from "./location.service";
 import {Location} from "./location.entity";
 import {ApiTags} from '@nestjs/swagger';
 import {Goods} from "../goods/goods.entity";
+import {Response} from "@emms/models";
 
 @ApiTags('location')
 @Controller('location')
@@ -19,8 +20,11 @@ export class LocationController {
   @Get('all/:id')
   getAll(@Param('id') id: string
     ,@Query('code') code?: string
-    ,@Query('name') name?: string): Promise<Goods[]> {
-    return this.locationService.getAllLocation(id, code, name);
+    ,@Query('name') name?: string
+    ,@Query('page') page?: number
+    ,@Query('pagesize') pageSize?: number,
+  ): Promise<Response<any[]>> {
+    return this.locationService.getAllLocation(id, code, name, page, pageSize);
   }
     @Get('search/:id')
     search(

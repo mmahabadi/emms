@@ -36,6 +36,8 @@ export class AssetService {
       const allAsset =  this.assetEntityRepository.createQueryBuilder("asset")
         .select("asset")
         .innerJoinAndSelect("asset.assetCat", "assetCat")
+        .innerJoinAndSelect("asset.org", "org")
+        .innerJoinAndSelect("asset.location", "location")
         .where(whereStr)
         .getMany();
 

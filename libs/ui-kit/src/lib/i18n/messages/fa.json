@@ -6,6 +6,8 @@
   "MENU.SETTING": "نتظیمات",
   "MENU.SETTING.BASE": "پایه",
   "MENU.SETTING.GOODS": "کالا",
+  "MENU.SETTING.LOCATION": "مکان",
+  "MENU.SETTING.SKILL": "تخصص",
 
   "GENERAL.LOADING": "لطفا صبر کنید...",
   "GENERAL.SEARCH": "جستجو",
@@ -20,6 +22,7 @@
   "GENERAL.GOODS": "کالا",
   "GENERAL.TITLE": "تیتر",
   "GENERAL.LOCATION": "مکان",
+  "GENERAL.SKILL": "مهازت",
 
   "ASSETS.ASSET": "تجهیز",
   "ASSETS.ASSETS": "تجهیزات",
@@ -36,6 +39,7 @@
   "GENERAL.CHECKLIST": "چک لیست",
   "GENERAL.JOBREQUEST": "درخواست کار",
   "GENERAL.LOCATION": "مکان",
+  "GENERAL.SKILL": "مهازت",
   "GENERAL.ACTIVITY": "فعالیت",
   "GENERAL.SKILLS": "تخصص",
   "GENERAL.ID": "هویت",
@@ -171,6 +175,9 @@
 
   "SETTING.LOCATION.ADD": "افزودن مکان",
   "SETTING.LOCATION.EDIT": "ویرایش مکان",
+
+  "SETTING.SKILL.ADD": "افزودن تخصص",
+  "SETTING.SKILL.EDIT": "ویرایش تخصص",
   "SETTING.GOODS.ADD": "افزودن کالا",
   "SETTING.GOODS.EDIT": "ویرایش کالا"
 }

@@ -55,6 +55,8 @@ const withAsyncSelect = (getData: any) => {
         control={control}
         render={({ field: { onChange, onBlur, value, ref } }) =>
         {
+          console.log(value);
+
           if (value && value.id) {
             state = {id: value['id'] || null, name: value['name'] || ''};
           }

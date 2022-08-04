@@ -49,13 +49,13 @@ export const AssetEntryForm: FC = () => {
         <div className="col-lg-6">
           <SelectOrg
             label="GENERAL.ORG"
-            name='orgId'
+            name='org'
             form={form}/>
         </div>
         <div className="col-lg-6">
           <SelectAssetCat
             label="ASSETS.CAT"
-            name='assetCatId'
+            name='assetCat'
             required={true}
             showValidation={true}
             form={form}/>
@@ -85,7 +85,7 @@ export const AssetEntryForm: FC = () => {
         <div className="col-lg-6">
           <SelectLocation
             label="GENERAL.LOCATION"
-            name='locationId'
+            name='location'
             form={form}/>
         </div>
         <div className="col-lg-6">

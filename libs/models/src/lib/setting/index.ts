@@ -17,6 +17,13 @@ export type Location = Entity & {
   parent: ID;
   invalidFrom?: string;
 }
+export type Skill = Entity & {
+  id: ID;
+  org: ID;
+  code: string;
+  name: string;
+  invalidFrom?: string;
+}
 
 
 export type GoodsQueryResponse = Response<Array<Goods>>;

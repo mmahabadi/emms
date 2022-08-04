@@ -46,6 +46,7 @@ export const GoodsList: FC = () => {
       cacheTime={15}
       toolbar={toolbar}
       filterComponent={GoodsFilter}
+      hasServerSidePaging={true}
       actions={actions}
     />
   )

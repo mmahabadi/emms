@@ -2,14 +2,16 @@ import React, {FC} from "react";
 import {useIntl} from "react-intl";
 import {PageLink, PageTitle} from "@emms/ui-kit";
 import {Link, Outlet, Route, Routes, useLocation} from "react-router-dom";
-import {GoodsList} from "./components/goods/GoodsList";
-import {LocationList} from "./components/location/LocationList";
 import {SettingHeader} from "./components/SettingHeader";
+import {GoodsList} from "./components/goods/GoodsList";
+import {SkillList} from "./components/skill/SkillList";
+import {LocationList} from "./components/location/LocationList";
+import {LocationHeader} from "./components/location/LocationHeader";
 
 const breadCrumbs: Array<PageLink> = [
   {
     title: 'MENU.SETTING',
-    path: '/setting/overview',
+    path: '/assets/overview',
     isSeparator: false,
     isActive: false,
   },
@@ -45,7 +47,24 @@ const SettingPage: FC = () => {
                       }
                       to='/setting/overview'
                     >{intl.formatMessage({id: 'MENU.SETTING.GOODS'})}</Link>
-
+                  </li>
+                  <li className='nav-item'>
+                    <Link
+                      className={
+                        `nav-link cursor-pointer ` +
+                        (location.pathname === '/setting/skill' && 'active')
+                      }
+                      to='/setting/skill'
+                    >{intl.formatMessage({id: 'MENU.SETTING.SKILL'})}</Link>
+                  </li>
+                  <li className='nav-item'>
+                    <Link
+                      className={
+                        `nav-link cursor-pointer ` +
+                        (location.pathname === '/setting/location' && 'active')
+                      }
+                      to='/setting/location'
+                    >{intl.formatMessage({id: 'MENU.SETTING.LOCATION'})}</Link>
                   </li>
                 </ul>
               </div>
@@ -66,8 +85,25 @@ const SettingPage: FC = () => {
           path='overview'
           element={
             <>
-              <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.BASE'})}</PageTitle>
+              <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.GOODS'})}</PageTitle>
               <GoodsList/>
+            </>
+          }
+        /><Route
+          path='goods'
+          element={
+            <>
+              <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.GOODS'})}</PageTitle>
+              <GoodsList/>
+            </>
+          }
+        />
+        <Route
+          path='skill'
+          element={
+            <>
+              <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.SKILL'})}</PageTitle>
+              <SkillList/>
             </>
           }
         />
@@ -75,7 +111,7 @@ const SettingPage: FC = () => {
           path='location'
           element={
             <>
-              <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.LOCATION'})}</PageTitle>
+              <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.SKILL'})}</PageTitle>
               <LocationList/>
             </>
           }
