@@ -1,6 +1,6 @@
 import {Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
-import {Repository} from "typeorm";
+import {ILike, Repository} from "typeorm";
 import {Activity} from "./activity.entity";
 
 @Injectable()
@@ -24,5 +24,13 @@ export class ActivityService {
         return await this.activityEntityRepository.find( {relations: ["parent"], where:{
                 org: orgId
             }});
+    }
+
+    async search(orgId: string, q: string) {
+      return await this.activityEntityRepository.find({
+        where: {
+          name: ILike(`%${q}%`)
+        }
+      });
     }
 }

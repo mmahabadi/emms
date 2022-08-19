@@ -1,8 +1,10 @@
 import {AssetCategory, ID, InputPropTypes, ValidationErrors} from "@emms/models";
 import {useIntl} from "react-intl";
 import clsx from "clsx";
-import {Controller} from "react-hook-form";
+import {Controller, useFieldArray} from "react-hook-form";
 import {SelectInput} from "../components/fields/Select";
+import React from "react";
+import {KTSVG} from "../components/KTSVG";
 
 const withInput = (Component: any) => {
     return (props: InputPropTypes) => {
@@ -17,7 +19,7 @@ const withInput = (Component: any) => {
       const errorMessage = errorType && ValidationErrors[errorType];
 
       return(
-        <div className='row mb-5'>
+        <div className='row'>
           {label &&
             <label className={clsx(
               'col-form-label fw-bold fs-6',
@@ -81,4 +83,74 @@ const withAsyncSelect = (getData: any) => {
     )
   }
 }
-export {withInput, withAsyncSelect};
+
+const withArrayField = (Component: any, columns: string[]) => {
+  return (props: InputPropTypes) => {
+    const intl = useIntl();
+    const { control } = props.form;
+    const { fields, append, remove } = useFieldArray({
+      control, // control props comes from useForm (optional: if you are using FormContext)
+      name: props.name, // unique name for your Field Array
+    });
+
+    const colSpan = 3 + columns.length;
+
+    const removeBtn = (remove: any, index: number) => {
+      return <button
+        type="button"
+        onClick={() => remove(index)}
+        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm btn-remove'>
+        <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+      </button>
+    }
+
+    const expandBtn = (expand: boolean, setExpand: any) => {
+      return <a onClick={() => setExpand(!expand)}>
+        <KTSVG path={`/media/icons/duotune/arrows/${expand ? 'arr072' : 'arr074'}.svg`} className='svg-icon-3' />
+      </a>
+    }
+    return (
+      <table className="table table-row-bordered form-array table-row-gray-100 align-middle gs-0 gy-3">
+        <thead>
+          <tr className='fw-bolder text-muted'>
+            <td className='w-15px'></td>
+            <th className='w-25px'>#</th>
+            {columns.map(col => <th key={col} className='min-w-150px'>{intl.formatMessage({id: col})}</th>)}
+            <th className='w-50px'></th>
+          </tr>
+        </thead>
+        {fields.map((item, index) => {
+          return (
+            <Component
+              key={item.id}
+              {...props}
+              index={index}
+              field={item}
+              remove={remove}
+              removeBtn={removeBtn}
+              expandBtn={expandBtn}
+              columns={columns}
+            />
+          );
+        })}
+        <tfoot>
+        <tr>
+          <td colSpan={colSpan - 1}></td>
+          <td>
+            <button
+              type="button"
+              onClick={() => {
+                append({});
+              }}
+              className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm btn-add'>
+              <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
+            </button>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    )
+  }
+}
+
+export {withInput, withAsyncSelect, withArrayField};

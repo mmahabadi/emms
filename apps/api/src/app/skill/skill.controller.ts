@@ -1,7 +1,7 @@
-import {Body, Controller, Get, Param, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, Query} from '@nestjs/common';
 import {Skill} from "./skill.entity";
 import {SkillService} from "./skill.service";
-import { ApiTags } from '@nestjs/swagger';
+import {ApiTags} from '@nestjs/swagger';
 
 @ApiTags('skill')
 @Controller('skill')
@@ -18,5 +18,12 @@ export class SkillController {
     @Get('all/:id')
     getAll(@Param('id') id: string): Promise<Skill[]> {
         return this.service.getAllSkill(id);
+    }
+    @Get('search/:id')
+    search(
+      @Param('id') id: string,
+      @Query('q') q?: string
+    ): Promise<Skill[]> {
+        return this.service.search(id, q);
     }
 }

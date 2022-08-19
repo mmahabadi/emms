@@ -6,6 +6,7 @@
   "MENU.SETTING": "نتظیمات",
   "MENU.SETTING.BASE": "پایه",
   "MENU.SETTING.GOODS": "کالا",
+  "MENU.SETTING.LOCATION": "مکان",
 
   "GENERAL.LOADING": "لطفا صبر کنید...",
   "GENERAL.SEARCH": "جستجو",
@@ -19,7 +20,6 @@
   "GENERAL.NAME": "نام",
   "GENERAL.GOODS": "کالا",
   "GENERAL.TITLE": "تیتر",
-  "GENERAL.LOCATION": "مکان",
 
   "ASSETS.ASSET": "تجهیز",
   "ASSETS.ASSETS": "تجهیزات",
@@ -31,6 +31,7 @@
   "ASSETS.REPORT": "گزارش تجهیزات",
   "ASSETS.PLATE_NO": "شماره اموال",
 
+  "GENERAL.TIME": "زمان",
   "GENERAL.PLACE": "مکان",
   "GENERAL.PLACES": "مکانها ",
   "GENERAL.CHECKLIST": "چک لیست",

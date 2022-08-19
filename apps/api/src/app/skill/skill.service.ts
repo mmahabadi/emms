@@ -1,6 +1,6 @@
 import {Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
-import {Repository} from "typeorm";
+import {ILike, Repository} from "typeorm";
 import {Skill} from "./skill.entity";
 
 @Injectable()
@@ -24,5 +24,14 @@ export class SkillService {
         return await this.repository.find( {where:{
                 org: orgId
             }});
+    }
+
+    async search(orgId: string, q: string) {
+      return await this.repository.find({
+        where: {
+          name: ILike(`%${q}%`),
+          org: orgId
+        }
+      });
     }
 }

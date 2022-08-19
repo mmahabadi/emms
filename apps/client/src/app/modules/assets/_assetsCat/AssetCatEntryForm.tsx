@@ -5,13 +5,14 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {AssetCategory} from "@emms/models";
 import {saveAssetCategory} from "../core/services";
-import {SelectAsset} from "../../../helpers";
+import {ActivitiesFormArray, SelectAsset} from "../../../helpers";
 
 const formSchema = yup.object().shape({
   code: yup.string().required(),
   name: yup.string().required(),
   title: yup.string().required(),
   parent: yup.object().nullable(),
+  activities: yup.array().nullable(),
 });
 
 export const AssetEntryForm: FC = () => {
@@ -27,7 +28,7 @@ export const AssetEntryForm: FC = () => {
 
   const prepareEditForm = () => {
     const values = {
-      ...selectedItem,
+      ...selectedItem
     };
     setFormValues(form, values);
   }
@@ -67,6 +68,14 @@ export const AssetEntryForm: FC = () => {
             label="GENERAL.PARENT"
             name='parentId'
             form={form}/>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12">
+          <ActivitiesFormArray
+            name='activities'
+            form={form}
+          />
         </div>
       </div>
     </ModalFormContainer>

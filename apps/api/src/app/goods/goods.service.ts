@@ -37,4 +37,13 @@ export class GoodsService {
       //           org: orgId
       //       }});
     }
+
+    async search(orgId: string, q: string) {
+      return await this.repository.find({
+        where: {
+          name: ILike(`%${q}%`),
+          org: orgId
+        }
+      });
+    }
 }

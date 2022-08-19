@@ -48,7 +48,7 @@ function mapFormValues<T>(values: T): T {
   Object.entries(values).forEach(([key, value]) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    entry[key] = value && typeof value == 'object' ? value['id'] : value;
+    entry[key] = value && value.constructor === Object ? value['id'] : value;
   });
   return entry;
 }
@@ -56,11 +56,11 @@ function setFormValues<T>(form: any, values: T): void {
   if (values) {
     const {setValue} = form;
     Object.entries(values).forEach(([key, value]) => {
-      if (value && typeof value == 'object') {
+      if (value && value.constructor === Object) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         setValue(`${key}Id`, {id: value?.id, name: value?.name});
-      } else {
+      }else {
         setValue(key, value);
       }
     });

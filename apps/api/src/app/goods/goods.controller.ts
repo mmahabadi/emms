@@ -1,7 +1,7 @@
 import {Body, Controller, Get, Param, Post, Query} from '@nestjs/common';
 import {Goods} from "./goods.entity";
 import {GoodsService} from "./goods.service";
-import { ApiTags } from '@nestjs/swagger';
+import {ApiTags} from '@nestjs/swagger';
 
 @ApiTags('goods')
 @Controller('goods')
@@ -20,5 +20,12 @@ export class GoodsController {
       ,@Query('code') code?: string
       ,@Query('name') name?: string): Promise<Goods[]> {
         return this.service.getAllGoods(id, code, name);
+    }
+    @Get('search/:id')
+    search(
+      @Param('id') id: string,
+      @Query('q') q?: string
+    ): Promise<Goods[]> {
+        return this.service.search(id, q);
     }
 }

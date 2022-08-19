@@ -16,8 +16,8 @@ const TextInputController: FC<InputPropTypes> = ({
       {...register(name, {required})}
       type={type}
       placeholder={placeholder && intl.formatMessage({id: placeholder})}
-      className={clsx(className,
-        'form-control form-control-lg form-control-solid',
+      className={clsx('form-control form-control-solid',
+        className,
         {'is-invalid': showValidation && isSubmitted && errors[name]},
         {'is-valid': showValidation && isSubmitted && !errors[name]}
       )}

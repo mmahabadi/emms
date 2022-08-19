@@ -31,3 +31,27 @@ h1, h2, h3, h4, h5, h6,input, textarea {
 .page-item.active:hover .page-link {
     color: #ffffff;
 }
+
+.table .btn-remove:hover{
+  color: #f1416c!important;
+  background-color: #fff5f8!important;
+  svg{
+    color: #f1416c!important;
+  }
+}
+
+.table {
+  &.form-array tbody tr:last-child{
+    border-bottom: 1px solid var(--bs-gray-100)!important;
+  }
+  .btn-add:hover{
+    color: #50cd89!important;
+    background-color: #e8fff3!important;
+    svg{
+      color: #50cd89!important;
+    }
+  }
+  .sub-table{
+    //background-color: rgba(0, 0, 0, .02);
+  }
+}

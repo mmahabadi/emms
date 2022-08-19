@@ -1,7 +1,7 @@
-import {Body, Controller, Get, Param, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, Query} from '@nestjs/common';
 import {ActivityService} from "./activity.service";
 import {Activity} from "./activity.entity";
-import { ApiTags, ApiResponse } from '@nestjs/swagger';
+import {ApiResponse, ApiTags} from '@nestjs/swagger';
 
 @ApiTags('activity')
 @Controller('activity')
@@ -24,5 +24,12 @@ export class ActivityController {
     @Get('all/:id')
     getAll(@Param('id') id: string): Promise<Activity[]> {
         return this.activityService.getAllActivity(id);
+    }
+    @Get('search/:id')
+    search(
+      @Param('id') id: string,
+      @Query('q') q?: string
+    ): Promise<Activity[]> {
+        return this.activityService.search(id, q);
     }
 }

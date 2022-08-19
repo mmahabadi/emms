@@ -6,7 +6,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {Datepicker, ModalFormContainer, setFormValues, TextInput, useModalConfig} from "@emms/ui-kit";
 import {SelectAsset, SelectAssetCat, SelectLocation, SelectOrg} from "../../../helpers";
 import {saveAsset} from "../core/services";
-import {v4 as uuidv4} from 'uuid';
+import {v4 as uuidv4} from "uuid";
 
 const formSchema = yup.object().shape({
   assetCatId: yup.object().required(),
