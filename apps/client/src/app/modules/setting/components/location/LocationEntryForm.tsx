@@ -42,7 +42,6 @@ export const LocationEntryForm: FC = () => {
   }
 
   const onSubmit: SubmitHandler<Location> = async (values) => {
-    console.log('asdasdasdasdasdas')
     const entry = mapFormValues<Location>(values);
     setLoading(true);
     try {

@@ -25,6 +25,17 @@ export type Skill = Entity & {
   invalidFrom?: string;
 }
 
+export type Activity = Entity & {
+  id: ID;
+  org: ID;
+  code: string;
+  name: string;
+  parent: string;
+  invalidFrom?: string;
+  goods?: {id: string}[];
+  skills?:{id: string}[];
+}
+
 
 export type GoodsQueryResponse = Response<Array<Goods>>;
 export type LocationQueryResponse = Response<Array<Location>>;

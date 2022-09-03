@@ -4,6 +4,7 @@ const QUERIES = {
   GOODS_LIST: 'goods-list',
   LOCATION_LIST: 'location-list',
   SKILL_LIST: 'skill-list',
+  ACTIVITY_LIST: 'activity-list',
 }
 
 export {QUERIES}

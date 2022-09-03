@@ -22,7 +22,26 @@ export class GoodsService {
         return await this.repository.findOne(id, {relations: ["org"]});
     }
 
-    async getAllGoods(orgId: string, code:string, name:string, page: number, pageSize: number) {
+  async searchGoods(orgId: string, q:string) {
+    const whereStr = {
+      org: orgId,
+      ...(q && { name: ILike(`%${q}%`) }),
+    }
+
+    const allGoods = await  this.repository.createQueryBuilder("goods")
+      .select("goods")
+      .innerJoinAndSelect("goods.org", "org")
+      .where(whereStr)
+      .take(1000)
+      .getMany();
+
+    return allGoods
+
+
+  }
+
+
+  async getAllGoods(orgId: string, code:string, name:string, page: number, pageSize: number) {
       const skip = (page-1) * pageSize;
       const whereStr = {
         org: orgId,

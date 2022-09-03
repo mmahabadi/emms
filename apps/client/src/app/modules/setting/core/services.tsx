@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {getUserOrgId} from "../../../helpers/UserHelper";
-import {Goods, Skill} from "@emms/models";
+import {Activity, Goods, Skill} from "@emms/models";
 import {Location} from "@emms/models";
+import {ActivityList} from "../components/activity/ActivityList";
 
 const {NX_REACT_APP_API_URL} = process.env;
 
@@ -57,4 +58,26 @@ export const saveSkill = async (entry: Skill) => {
   // const isUpdating = !!entry?.id;
   // const http = isUpdating ? axios.put : axios.post;
   return await axios.post(`${NX_REACT_APP_API_URL}/skill`, entry);
+}
+
+
+
+
+export const getActivities = async (query: string) => {
+  const orgId = getUserOrgId();
+  const res = await axios.get(`${NX_REACT_APP_API_URL}/activity/all/${orgId}?${query}`);
+  return res.data;
+
+}
+
+export const getActivity = async (id: string) => {
+  return await axios.get(`${NX_REACT_APP_API_URL}/activity/${id}`);
+}
+
+export const saveActivity = async (entry: Activity) => {
+  const orgId = getUserOrgId();
+  entry.org = orgId;
+  // const isUpdating = !!entry?.id;
+  // const http = isUpdating ? axios.put : axios.post;
+  return await axios.post(`${NX_REACT_APP_API_URL}/activity`, entry);
 }

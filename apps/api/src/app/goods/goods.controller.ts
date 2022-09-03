@@ -23,6 +23,14 @@ export class GoodsController {
       ,@Query('page') page?: number
       ,@Query('pagesize') pageSize?: number,
 ): Promise<Response<any[]>> {
-        return this.service.getAllGoods(id, code, name, page, pageSize);
+        return this.service.
+        getAllGoods(id, code, name, page, pageSize);
+    }
+
+    @Get('search/:id')
+    searchGoods(@Param('id') id: string
+      ,@Query('q') q?: string
+): Promise<Goods[]> {
+        return this.service.searchGoods(id, q);
     }
 }

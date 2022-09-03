@@ -6,7 +6,7 @@ import {SettingHeader} from "./components/SettingHeader";
 import {GoodsList} from "./components/goods/GoodsList";
 import {SkillList} from "./components/skill/SkillList";
 import {LocationList} from "./components/location/LocationList";
-import {LocationHeader} from "./components/location/LocationHeader";
+import {ActivityList} from "./components/activity/ActivityList";
 
 const breadCrumbs: Array<PageLink> = [
   {
@@ -52,6 +52,15 @@ const SettingPage: FC = () => {
                     <Link
                       className={
                         `nav-link cursor-pointer ` +
+                        (location.pathname === '/setting/activity' && 'active')
+                      }
+                      to='/setting/activity'
+                    >{intl.formatMessage({id: 'MENU.SETTING.ACTIVITY'})}</Link>
+                  </li>
+                  <li className='nav-item'>
+                    <Link
+                      className={
+                        `nav-link cursor-pointer ` +
                         (location.pathname === '/setting/skill' && 'active')
                       }
                       to='/setting/skill'
@@ -87,6 +96,14 @@ const SettingPage: FC = () => {
             <>
               <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.GOODS'})}</PageTitle>
               <GoodsList/>
+            </>
+          }
+        /><Route
+          path='activity'
+          element={
+            <>
+              <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.ACTIVITY'})}</PageTitle>
+              <ActivityList/>
             </>
           }
         /><Route

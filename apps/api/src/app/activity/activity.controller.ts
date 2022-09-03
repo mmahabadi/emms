@@ -1,7 +1,8 @@
-import {Body, Controller, Get, Param, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, Query} from '@nestjs/common';
 import {ActivityService} from "./activity.service";
 import {Activity} from "./activity.entity";
 import { ApiTags, ApiResponse } from '@nestjs/swagger';
+import {Response} from "@emms/models";
 
 @ApiTags('activity')
 @Controller('activity')
@@ -21,8 +22,14 @@ export class ActivityController {
     get(@Param('id') id: string): Promise<Activity> {
         return this.activityService.getActivity(id);
     }
-    @Get('all/:id')
-    getAll(@Param('id') id: string): Promise<Activity[]> {
-        return this.activityService.getAllActivity(id);
-    }
+  @Get('all/:id')
+  getAll(@Param('id') id: string
+    ,@Query('code') code?: string
+    ,@Query('name') name?: string
+    ,@Query('page') page?: number
+    ,@Query('pagesize') pageSize?: number,
+  ): Promise<Response<any[]>> {
+    return this.activityService.
+    getAllActivities(id, code, name, page, pageSize);
+  }
 }
