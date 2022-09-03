@@ -17,8 +17,6 @@ const TablePagination = () => {
 
     updateState({page: newPage, pageSize: pagination.pageSize || 10})
   }
-  console.log(links)
-  debugger
 
   return (
     <div className='row'>
