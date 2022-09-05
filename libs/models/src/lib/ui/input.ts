@@ -13,6 +13,15 @@ export type InputPropTypes = {
   showValidation?: boolean,
 }
 
+export type FormArrayInput = InputPropTypes & {
+  index: number;
+  columns: Array<string>;
+  field: any;
+  remove: any;
+  removeBtn: any;
+  expandBtn: any;
+}
+
 export const ValidationErrors = {
   required: 'VALIDATION.REQUIRED'
 } as const;

@@ -4,13 +4,13 @@ import {DataTable, KTSVG, useModalConfig} from "@emms/ui-kit";
 import {QUERIES} from "../../../helpers/queries";
 import {getAssetCategories} from "../core/services";
 import {AssetsCatFilter} from "./AssetsCatFilter";
-import {AssetEntryForm} from "./AssetCatEntryForm";
+import {AssetCatEntryForm} from "./AssetCatEntryForm";
 
 export const AssetsCategoryList: FC = () => {
   const {updateConfig: updateModalConfig} = useModalConfig();
 
   useEffect(() => {
-    updateModalConfig({bodyComponent: AssetEntryForm, isLarge: true});
+    updateModalConfig({bodyComponent: AssetCatEntryForm, isLarge: true});
   }, []);
 
   const columns = [

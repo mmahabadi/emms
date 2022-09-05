@@ -56,12 +56,12 @@ function setFormValues<T>(form: any, values: T): void {
   if (values) {
     const {setValue} = form;
     Object.entries(values).forEach(([key, value]) => {
-      if (value && typeof value == 'object') {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        setValue(`${key}`, {id: value?.id, name: value?.name});
+      if (value && value.constructor === Object) {
+        if(value)
+          setValue(`${key}`, {id: value?.id, name: value?.name});
       } else {
-        setValue(key, value);
+        if(value)
+          setValue(key, value);
       }
     });
   }

@@ -1,7 +1,7 @@
 import {Injectable} from "@nestjs/common";
 import {from} from "rxjs";
 import {InjectRepository} from "@nestjs/typeorm";
-import {Like, Repository} from "typeorm";
+import {Like, ILike, Repository} from "typeorm";
 import {AssetCat} from "./assetCat.entity";
 import {PaginatedResponse} from "../util/pagination-response";
 
@@ -19,7 +19,7 @@ export class AssetCatsService {
 
     getAssetCat(id: string) :Promise<AssetCat | undefined> {
         // from(this.checkForSave(asset));
-        return this.assetCatEntityRepository.findOne(id, {relations:["org"]});
+        return this.assetCatEntityRepository.findOne(id,  {relations: ["org", "parent"]});
     }
 
     async getAllAssetCat(orgId: string) {
@@ -41,20 +41,24 @@ export class AssetCatsService {
       });
     }
 
-    async getAllAssetCatWithPaging(orgId: string, page: number, pageSize: number) {
-        const skip = (page-1) * pageSize;
-        // const keyword = query.keyword || ''
-        const response = await this.assetCatEntityRepository.findAndCount(
-          {
-            where:{
-              org: orgId,
-              // name: Like('%' + keyword + '%')
-            },
-            // order: { name: "DESC" },
-            take: pageSize,
-            skip
-          });
-      const [data, total] = response;
-      return new PaginatedResponse<AssetCat[]>(data ,page, total, pageSize);
+    async getAllAssetCatWithPaging(orgId: string, code:string, name:string, page: number, pageSize: number) {
+ const skip = (page - 1) * pageSize;
+      const whereStr = {
+        org: orgId,
+        ...(code && {code: ILike(`%${code}%`)}),
+        ...(name && {name: ILike(`%${name}%`)}),
+      }
+
+      const allLocation = await this.assetCatEntityRepository.createQueryBuilder("asset_cat")
+        .select("asset_cat")
+        .innerJoinAndSelect("asset_cat.org", "org")
+        .innerJoinAndSelect("asset_cat.parent", "parent")
+        .where(whereStr)
+        .take(pageSize)
+        .skip(skip)
+        .getManyAndCount();
+
+      const [data, total] = allLocation;
+      return new PaginatedResponse<Location[]>(data, page, total, pageSize);
     }
 }

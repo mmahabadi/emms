@@ -33,11 +33,13 @@ export class AssetCatController {
 
     @Get('all/paging/:id')
     getAllWithPaging(
-      @Param('id') id: string,
-      @Query('page') page?: number,
-      @Query('pagesize') pageSize?: number,
+      @Param('id') id: string
+      ,@Query('code') code?: string
+      ,@Query('name') name?: string
+      ,@Query('page') page?: number
+      ,@Query('pagesize') pageSize?: number,
     ): Promise<Response<any[]>> {
-        return this.assetCatsService.getAllAssetCatWithPaging(id, page, pageSize);
+        return this.assetCatsService.getAllAssetCatWithPaging(id, code, name, page, pageSize);
     }
 
 }

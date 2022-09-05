@@ -34,8 +34,8 @@ export class AssetCat {
   @ApiProperty({
     example: 'عنوان  '
   })
-  @Column({ type: 'text' })
-  field_title: string;
+  @Column({ type: 'text', name: "field_title" })
+  title: string;
 
   @ApiProperty({
     example: '2016-06-22 20:44:52.134125-07',
@@ -47,7 +47,11 @@ export class AssetCat {
   @ApiProperty({
     example: '2016-06-22 20:44:52.134125-07'
   })
-  @Column({ type: 'uuid', name: 'id' })
+
+  @ApiProperty({
+    example: '5dc228e2-51e4-4738-9d8a-2b72edb229a4'
+  })
+  @Column({ type: 'uuid', name: "parent_id"})
   @OneToOne(() => AssetCat)
   @JoinColumn({name:"parent_id" , referencedColumnName: "id"})
   parent: Relation<AssetCat>;
@@ -77,8 +81,8 @@ export class AssetCat {
         '\n' +
         '}]'
   })
-  @Column({ type: 'jsonb'  , nullable:true})
-  activity_results?: [{activityID: string, goods:string[], skill:[{ skillId: string, time:number}]}] ;
+  @Column({ type: 'jsonb'  , nullable:true, name:'activity_results' })
+  activities?: [{id: string, goods:string[], skills:[{ skill: string, time:number}]}] ;
 
 }
 
