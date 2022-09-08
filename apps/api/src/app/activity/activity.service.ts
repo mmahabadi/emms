@@ -13,7 +13,9 @@ export class ActivityService {
 
     async insertActivity(activity: Activity) {
         // from(this.checkForSave(asset));
-        return await this.activityEntityRepository.save(activity);
+        const saveResult =  await this.activityEntityRepository.save(activity);
+        return saveResult;
+
     }
 
     async getActivity(id: string): Promise<Activity | undefined> {
@@ -21,6 +23,24 @@ export class ActivityService {
         return await this.activityEntityRepository.findOne(id, {relations: ["org", "parent"]});
     }
 
+  async searchActivity(orgId: string, q:string) {
+    const whereStr = {
+      org: orgId,
+      ...(q && { name: ILike(`%${q}%`) }),
+    }
+
+    const all = await  this.activityEntityRepository.createQueryBuilder("activity")
+      .select("activity")
+      .innerJoinAndSelect("activity.org", "org")
+      .innerJoinAndSelect("activity.parent", "parent")
+      .where(whereStr)
+      .take(1000)
+      .getMany();
+
+    return all
+
+
+  }
   async getAllActivities(orgId: string, code:string, name:string, page: number, pageSize: number) {
     const skip = (page-1) * pageSize;
     const whereStr = {

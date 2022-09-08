@@ -3,6 +3,7 @@ import {ActivityService} from "./activity.service";
 import {Activity} from "./activity.entity";
 import { ApiTags, ApiResponse } from '@nestjs/swagger';
 import {Response} from "@emms/models";
+import {Goods} from "../goods/goods.entity";
 
 @ApiTags('activity')
 @Controller('activity')
@@ -32,4 +33,12 @@ export class ActivityController {
     return this.activityService.
     getAllActivities(id, code, name, page, pageSize);
   }
+
+  @Get('search/:id')
+  searchGoods(@Param('id') id: string
+    ,@Query('q') q?: string
+  ): Promise<Goods[]> {
+    return this.activityService.searchActivity(id, q);
+  }
+
 }

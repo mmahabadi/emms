@@ -45,10 +45,12 @@ const withForm = (Component: any) => {
 
 function mapFormValues<T>(values: T): T {
   const entry = {} as T;
+  console.log("values");
+  console.log(values);
   Object.entries(values).forEach(([key, value]) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    entry[key] = value && typeof value == 'object' ? value['id'] : value;
+    entry[key] = value && value.constructor === Object ? value['id'] : value;
   });
   return entry;
 }

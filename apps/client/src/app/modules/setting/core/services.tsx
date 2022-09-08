@@ -74,10 +74,21 @@ export const getActivity = async (id: string) => {
   return await axios.get(`${NX_REACT_APP_API_URL}/activity/${id}`);
 }
 
-export const saveActivity = async (entry: Activity) => {
-  const orgId = getUserOrgId();
-  entry.org = orgId;
-  // const isUpdating = !!entry?.id;
-  // const http = isUpdating ? axios.put : axios.post;
-  return await axios.post(`${NX_REACT_APP_API_URL}/activity`, entry);
+// export const saveActivity = async (entry: Activity) => {
+//   const orgId = getUserOrgId();
+//   entry.org = orgId;
+//   // const isUpdating = !!entry?.id;
+//   // const http = isUpdating ? axios.put : axios.post;
+//   return await axios.post(`${NX_REACT_APP_API_URL}/activity`, entry);
+// }
+
+function getSaveActivity<Activity>() {
+  return async (entry: Activity) => {
+    console.log(entry)
+    const orgId = getUserOrgId();
+    // entry.orgId = orgId;
+    return await axios.post(`${NX_REACT_APP_API_URL}/activity`, entry);
+  };
 }
+
+export const saveActivity = getSaveActivity()

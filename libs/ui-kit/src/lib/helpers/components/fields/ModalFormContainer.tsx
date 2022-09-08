@@ -18,19 +18,23 @@ export const ModalFormContainer:FC<PropTypes> = ({form, children, onSubmit}) => 
   const {appState: {refetchGridData}} = useAppState();
   const {handleSubmit, formState: {isSubmitting}} = form;
 
-  const submitHandler = async (values: any) => {
-    const entry = mapFormValues<AssetCategory>(values);
-    setLoading(true);
-    try {
-      await onSubmit(entry);
-      setLoading(false);
-      closeModal();
-      refetchGridData && refetchGridData();
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
+  function getSubmitHandler<T>() {
+    return async (values: any) => {
+      const entry = mapFormValues<T>(values);
+      setLoading(true);
+      try {
+        await onSubmit(entry);
+        setLoading(false);
+        closeModal();
+        refetchGridData && refetchGridData();
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    };
   }
+
+  const submitHandler = getSubmitHandler()
   return (
     <form
       className='form w-100'

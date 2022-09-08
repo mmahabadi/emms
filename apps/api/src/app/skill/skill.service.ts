@@ -27,13 +27,13 @@ export class SkillService {
       ...(name && { name: ILike(`%${name}%`) }),
     }
 
-      const allGoods =  this.repository.createQueryBuilder("skill")
+      const allSkills =  this.repository.createQueryBuilder("skill")
         .select("skill")
         .innerJoinAndSelect("skill.org", "org")
         .where(whereStr)
         .getMany();
 
-      return allGoods;
+      return allSkills;
       // return await this.repository.find( {where:{
       //           org: orgId
       //       }});

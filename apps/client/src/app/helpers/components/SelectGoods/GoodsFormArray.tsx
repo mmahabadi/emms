@@ -1,7 +1,7 @@
-import {withArrayField} from "@emms/ui-kit";
+import {TextInput, withArrayField} from "@emms/ui-kit";
 import React, {FC} from "react";
 import {FormArrayInput} from "@emms/models";
-import {SelectGoods} from "../SelectGoods/SelectGoods";
+import {SelectGoods} from "./SelectGoods";
 
 const formControl: FC<FormArrayInput> = ({index, name, form, remove, removeBtn}) => {
   return (
@@ -11,7 +11,7 @@ const formControl: FC<FormArrayInput> = ({index, name, form, remove, removeBtn})
         <td>{index + 1}</td>
         <td>
           <SelectGoods
-            name={`${name}.${index}`}
+            name={`${name}.${index}.goods`}
             form={form}/>
         </td>
         <td>

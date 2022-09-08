@@ -1,7 +1,7 @@
 import {withArrayField} from "@emms/ui-kit";
 import React, {FC, useState} from "react";
 import {SelectActivity} from "../SelectActivity/SelectActivity";
-import {GoodsFormArray} from "./GoodsFormArray";
+import {GoodsFormArray} from "../SelectGoods/GoodsFormArray";
 import {FormArrayInput} from "@emms/models";
 import {SkillFormArray} from "./SkillFormArray";
 
