@@ -4,6 +4,7 @@ import {PageLink, PageTitle} from "@emms/ui-kit";
 import {Link, Outlet, Route, Routes, useLocation} from "react-router-dom";
 import {SettingHeader} from "./components/SettingHeader";
 import {GoodsList} from "./components/goods/GoodsList";
+import {DepartmentList} from "./components/department/DepartmentList";
 import {SkillList} from "./components/skill/SkillList";
 import {LocationList} from "./components/location/LocationList";
 import {ActivityList} from "./components/activity/ActivityList";
@@ -47,6 +48,15 @@ const SettingPage: FC = () => {
                       }
                       to='/setting/overview'
                     >{intl.formatMessage({id: 'MENU.SETTING.GOODS'})}</Link>
+                  </li>
+                  <li className='nav-item'>
+                    <Link
+                      className={
+                        `nav-link cursor-pointer ` +
+                        (location.pathname === '/setting/department' && 'active')
+                      }
+                      to='/setting/department'
+                    >{intl.formatMessage({id: 'MENU.SETTING.DEPARTMENT'})}</Link>
                   </li>
                   <li className='nav-item'>
                     <Link
@@ -98,6 +108,15 @@ const SettingPage: FC = () => {
               <GoodsList/>
             </>
           }
+        />
+        <Route
+          path='department'
+          element={
+            <>
+              <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.DEPARTMENT'})}</PageTitle>
+              <DepartmentList/>
+            </>
+          }
         /><Route
           path='activity'
           element={
@@ -112,6 +131,15 @@ const SettingPage: FC = () => {
             <>
               <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.GOODS'})}</PageTitle>
               <GoodsList/>
+            </>
+          }
+        />
+        <Route
+          path='department'
+          element={
+            <>
+              <PageTitle breadcrumbs={breadCrumbs}>{intl.formatMessage({id: 'MENU.SETTING.DEPARTMENT'})}</PageTitle>
+              <DepartmentList/>
             </>
           }
         />

@@ -14,6 +14,7 @@ const PrivateRoutes = () => {
   // const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
   const AssetsPage = lazy(() => import('../modules/assets/AssetsPage'))
   const SettingPage = lazy(() => import('../modules/setting/SettingPage'))
+  const JobsPage = lazy(() => import('../modules/jobs/JobsPage'))
   // const LocationPage = lazy(() => import('../modules/setting/components/location/LocationPage'))
   // const SkillPage = lazy(() => import('../modules/setting/components/skill/SkillPage'))
 
@@ -48,6 +49,13 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <SettingPage />
+            </SuspensedView>
+          }
+        /><Route
+          path='jobs/*'
+          element={
+            <SuspensedView>
+              <JobsPage />
             </SuspensedView>
           }
         />

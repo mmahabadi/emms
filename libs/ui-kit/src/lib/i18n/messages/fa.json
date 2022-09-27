@@ -9,6 +9,9 @@
   "MENU.SETTING.LOCATION": "مکان",
   "MENU.SETTING.SKILL": "تخصص",
   "MENU.SETTING.ACTIVITY": "فعالیت",
+  "MENU.JOBS": " کار",
+  "MENU.JOBS.JOB_REQUEST": "درخواست کار",
+  "MENU.JOBS.JOB_ORDER": "دستور کار",
 
   "GENERAL.LOADING": "لطفا صبر کنید...",
   "GENERAL.SEARCH": "جستجو",
@@ -24,7 +27,7 @@
   "GENERAL.TITLE": "تیتر",
   "GENERAL.LOCATION": "مکان",
   "GENERAL.SKILL": "مهازت",
-  "GENERAL.ACTIVITY": "کالا",
+  "GENERAL.ACTIVITY": "فعالیت",
 
   "ASSETS.ASSET": "تجهیز",
   "ASSETS.ASSETS": "تجهیزات",
@@ -180,5 +183,17 @@
   "SETTING.GOODS.ADD": "افزودن کالا",
   "SETTING.GOODS.EDIT": "ویرایش کالا",
   "SETTING.ACTIVITY.ADD": "افزودن فعالیت",
-  "SETTING.ACTIVITY.EDIT": "ویرایش فعالیت"
+  "SETTING.ACTIVITY.EDIT": "ویرایش فعالیت",
+
+
+  "JOBS.ASSET": "تجهیز",
+  "JOBS.IMPORTANCE_TYPE": "اولویت",
+  "JOBS.REQUEST_TYPE": "نوع درخواست",
+
+
+  "JOBS.JOB_REQUEST.ADD": "افزودن درخواست کار",
+  "JOBS.JOB_ORDER.ADD": "افزودن دستور کار",
+
+  "JOBS.JOB_REQUEST.EDIT": "ویرایش درخواست کار",
+  "JOBS.JOB_ORDER.EDIT": "ویرایش دستور کار"
 }

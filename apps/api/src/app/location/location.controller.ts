@@ -2,7 +2,6 @@ import {Body, Controller, Get, Param, Post, Query} from '@nestjs/common';
 import {LocationService} from "./location.service";
 import {Location} from "./location.entity";
 import {ApiTags} from '@nestjs/swagger';
-import {Goods} from "../goods/goods.entity";
 import {Response} from "@emms/models";
 
 @ApiTags('location')

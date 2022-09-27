@@ -1,3 +1,4 @@
+
 import {Module} from '@nestjs/common';
 
 import {AppController} from './app.controller';
@@ -10,6 +11,9 @@ import {AssetCat} from "./assetCats/assetCat.entity";
 import {AssetIdentity} from "./assetIdentity/assetIdentity.entity";
 import {Currency} from "./currency/currency.entity";
 import {Goods} from "./goods/goods.entity";
+import {Department} from "./department/department.entity";
+import {JobRequest} from "./jobRequest/jobRequest.entity";
+import {JobOrder} from "./jobOrder/jobOrder.entity";
 import {Location} from "./location/location.entity";
 import {Org} from "./org/org.entity";
 import {Skill} from "./skill/skill.entity";
@@ -21,9 +25,14 @@ import {ActivityModule} from "./activity/activity.module";
 import {AssetCatsModule} from "./assetCats/assetCats.module";
 import {AssetIdentityModule} from "./assetIdentity/assetIdentity.module";
 import {GoodsModule} from "./goods/goods.module";
+import {DepartmentModule} from "./department/department.module";
+import {JobRequestModule} from "./jobRequest/jobRequest.module";
+import {JobOrderModule} from "./jobOrder/jobOrder.module";
 import {SkillModule} from "./skill/skill.module";
 import {JwtModule} from "@nestjs/jwt";
 import {OperModule} from "./oper/oper.module";
+import {Damage} from "./damage/damage.entity";
+import {DamageModule} from "./damage/damage.module";
 
 @Module({
   imports: [
@@ -45,6 +54,10 @@ import {OperModule} from "./oper/oper.module";
          AssetIdentity,
          Currency,
          Goods,
+         Department,
+         JobRequest,
+         JobOrder,
+         Damage,
          Location,
          Org,
          Skill
@@ -58,6 +71,10 @@ import {OperModule} from "./oper/oper.module";
      AssetCatsModule,
      AssetIdentityModule,
      GoodsModule,
+     DepartmentModule,
+     JobRequestModule,
+     JobOrderModule,
+     DamageModule,
      SkillModule,
      OperModule,
   ],

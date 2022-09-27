@@ -25,6 +25,26 @@ export const saveGoods = async (entry: Goods) => {
   return await axios.post(`${NX_REACT_APP_API_URL}/goods`, entry);
 }
 
+
+export const getDepartments = async (query: string) => {
+  const orgId = getUserOrgId();
+  const res = await axios.get(`${NX_REACT_APP_API_URL}/department/all/${orgId}?${query}`);
+  return res.data;
+
+}
+
+export const getDepartment = async (id: string) => {
+  return await axios.get(`${NX_REACT_APP_API_URL}/department/${id}`);
+}
+
+export const saveDepartment = async (entry: Goods) => {
+  const orgId = getUserOrgId();
+  entry.org = orgId;
+  // const isUpdating = !!entry?.id;
+  // const http = isUpdating ? axios.put : axios.post;
+  return await axios.post(`${NX_REACT_APP_API_URL}/department`, entry);
+}
+
 export const getLocations = async (query: string) => {
   const orgId = getUserOrgId();
   const res =  await axios.get(`${NX_REACT_APP_API_URL}/location/all/${orgId}?${query}`);

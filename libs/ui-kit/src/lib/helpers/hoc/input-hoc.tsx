@@ -83,6 +83,45 @@ const withAsyncSelect = (getData: any) => {
   }
 }
 
+const withSelect = (getData: any) => {
+  return (props: InputPropTypes) => {
+    const {name, showValidation, className, form: {control, formState: { errors, isSubmitted }}} = props;
+    let state: SelectItemType = null;
+
+    return (
+      <Controller
+        name={name}
+        control={control}
+        render={({ field: { onChange, onBlur, value, ref } }) =>
+        {
+          if (value) {
+            state = value;
+          }
+          const handleChange = (newVal: any) => {
+            state = !newVal ? null : {id: null, name: newVal['name'] || ''};
+            state = newVal
+            onChange(state);
+          }
+          return  <SelectInput
+              value={state}
+              onChange={handleChange}
+              closeMenuOnSelect={false}
+              loadOptions={getData}
+              getOptionLabel={(item: AssetCategory) => item.name}
+              getOptionValue={(item: AssetCategory) => item.name}
+              className={clsx(className,
+                'form-control pt-1 pb-1 form-control-solid',
+                {'is-invalid': showValidation && isSubmitted && errors[name]},
+                {'is-valid': showValidation && isSubmitted && !errors[name]}
+              )}
+              {...props}
+            />
+        }}
+      />
+    )
+  }
+}
+
 const withArrayField = (Component: any, columns: string[]) => {
   return (props: InputPropTypes) => {
     const intl = useIntl();
@@ -108,6 +147,7 @@ const withArrayField = (Component: any, columns: string[]) => {
         <KTSVG path={`/media/icons/duotune/arrows/${expand ? 'arr072' : 'arr074'}.svg`} className='svg-icon-3' />
       </a>
     }
+    console.log(columns)
     return (
       <table className="table table-row-bordered form-array table-row-gray-100 align-middle gs-0 gy-3">
         <thead>
@@ -152,4 +192,4 @@ const withArrayField = (Component: any, columns: string[]) => {
   }
 }
 
-export {withInput, withAsyncSelect, withArrayField};
+export {withInput, withAsyncSelect, withSelect, withArrayField};

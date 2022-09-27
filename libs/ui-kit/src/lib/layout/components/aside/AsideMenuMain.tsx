@@ -34,7 +34,7 @@ export function AsideMenuMain() {
       <AsideMenuItemWithSub
         to='/setting'
         title={intl.formatMessage({id: 'MENU.SETTING'})}
-        icon='/media/icons/duotune/general/gen017.svg'
+        icon='/media/icons/duotune/general/gen032.svg'
         fontIcon='bi-person'
       >
         <AsideMenuItem
@@ -46,6 +46,17 @@ export function AsideMenuMain() {
           title={intl.formatMessage({id: 'MENU.SETTING.LOCATION'})}
           hasBullet={true} />
 
+      </AsideMenuItemWithSub>
+      <AsideMenuItemWithSub
+        to='/jobs'
+        title={intl.formatMessage({id: 'MENU.JOBS'})}
+        icon='/media/icons/duotune/general/gen011.svg'
+        fontIcon='bi-person'
+      >
+        <AsideMenuItem
+          to='/jobs/job-order'
+          title={intl.formatMessage({id: 'MENU.JOBS'})}
+          hasBullet={true} />
       </AsideMenuItemWithSub>
 
       {/*<AsideMenuItem*/}

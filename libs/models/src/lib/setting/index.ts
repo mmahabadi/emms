@@ -8,6 +8,14 @@ export type Goods = Entity & {
   invalidFrom?: string;
 }
 
+export type Department = Entity & {
+  id: ID;
+  org: ID;
+  code: string;
+  name: string;
+  invalidFrom?: string;
+}
+
 
 export type Location = Entity & {
   id: ID;
