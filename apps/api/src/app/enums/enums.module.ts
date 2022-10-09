@@ -1,12 +1,9 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import {Department} from "./department.entity";
-import {DepartmentService} from "./department.service";
-import {DepartmentController} from "./department.controller";
+import {EnumsController} from "./enum.controller";
+import {EnumsService} from "./enums.service";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Department])],
-    controllers: [DepartmentController],
-    providers: [DepartmentService],
+    controllers: [EnumsController],
+    providers: [EnumsService],
 })
-export class DepartmentModule {}
+export class EnumsModule {}

@@ -82,8 +82,7 @@ const withAsyncSelect = (getData: any) => {
     )
   }
 }
-
-const withSelect = (getData: any) => {
+const withAsyncSelect2 = (getData: any) => {
   return (props: InputPropTypes) => {
     const {name, showValidation, className, form: {control, formState: { errors, isSubmitted }}} = props;
     let state: SelectItemType = null;
@@ -94,12 +93,12 @@ const withSelect = (getData: any) => {
         control={control}
         render={({ field: { onChange, onBlur, value, ref } }) =>
         {
-          if (value) {
-            state = value;
+          console.log(value)
+          if (value ) {
+            state = {id: (value.id?value.id:value) || null, name: (value.name?value.name:value) || ''};
           }
           const handleChange = (newVal: any) => {
-            state = !newVal ? null : {id: null, name: newVal['name'] || ''};
-            state = newVal
+            state = !newVal ? null : {id: newVal['id'] || null, name: newVal['name'] || ''};
             onChange(state);
           }
           return  <SelectInput
@@ -108,7 +107,7 @@ const withSelect = (getData: any) => {
               closeMenuOnSelect={false}
               loadOptions={getData}
               getOptionLabel={(item: AssetCategory) => item.name}
-              getOptionValue={(item: AssetCategory) => item.name}
+              getOptionValue={(item: AssetCategory) => item.id}
               className={clsx(className,
                 'form-control pt-1 pb-1 form-control-solid',
                 {'is-invalid': showValidation && isSubmitted && errors[name]},
@@ -121,7 +120,6 @@ const withSelect = (getData: any) => {
     )
   }
 }
-
 const withArrayField = (Component: any, columns: string[]) => {
   return (props: InputPropTypes) => {
     const intl = useIntl();
@@ -192,4 +190,4 @@ const withArrayField = (Component: any, columns: string[]) => {
   }
 }
 
-export {withInput, withAsyncSelect, withSelect, withArrayField};
+export {withInput, withAsyncSelect, withAsyncSelect2, withArrayField};

@@ -29,10 +29,11 @@ import {DepartmentModule} from "./department/department.module";
 import {JobRequestModule} from "./jobRequest/jobRequest.module";
 import {JobOrderModule} from "./jobOrder/jobOrder.module";
 import {SkillModule} from "./skill/skill.module";
-import {JwtModule} from "@nestjs/jwt";
+// import {JwtModule} from "@nestjs/jwt";
 import {OperModule} from "./oper/oper.module";
 import {Damage} from "./damage/damage.entity";
 import {DamageModule} from "./damage/damage.module";
+import {EnumsModule} from "./enums/enums.module";
 
 @Module({
   imports: [
@@ -72,6 +73,7 @@ import {DamageModule} from "./damage/damage.module";
      AssetIdentityModule,
      GoodsModule,
      DepartmentModule,
+     EnumsModule,
      JobRequestModule,
      JobOrderModule,
      DamageModule,

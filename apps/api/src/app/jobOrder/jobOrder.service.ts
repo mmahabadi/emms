@@ -1,8 +1,7 @@
 import {Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
-import {ILike, Like, Repository} from "typeorm";
+import {Repository} from "typeorm";
 import {PaginatedResponse} from "../util/pagination-response";
-import {Goods} from "../goods/goods.entity";
 import {JobOrder} from "./jobOrder.entity";
 
 @Injectable()
@@ -31,6 +30,7 @@ export class JobOrderService {
       const all = await this.repository.createQueryBuilder("job_order")
         .select("job_order")
         .innerJoinAndSelect("job_order.org", "org")
+        .leftJoinAndSelect("job_order.department", "department")
         .where(whereStr)
         .take(pageSize)
         .skip(skip)

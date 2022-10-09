@@ -25,7 +25,7 @@ export class JobOrder {
     example: '5dc228e2-51e4-4738-9d8a-2b72edb229a4'
   })
   @Column({ type: 'uuid', name: "department_id"})
-  @OneToOne(() => Org)
+  @OneToOne(() => Department)
   @JoinColumn({name:"department_id" , referencedColumnName: "id"})
   department: Relation<Department>
 

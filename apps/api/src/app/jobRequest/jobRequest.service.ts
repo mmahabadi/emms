@@ -31,6 +31,7 @@ export class JobRequestService {
         .select("job_request")
         .innerJoinAndSelect("job_request.org", "org")
         .innerJoinAndSelect("job_request.asset", "asset")
+        .innerJoinAndSelect("job_request.damage", "damage")
         .where(whereStr)
         .take(pageSize)
         .skip(skip)

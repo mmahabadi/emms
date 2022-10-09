@@ -57,10 +57,10 @@ export class JobRequest {
 
 }
 enum ImportanceType {
-  'P01', 'P02', 'P03', 'P04', 'P05', 'P06', 'P07'
+  'P01'='P01', 'P02'='P02', 'P03'='P03', 'P04'='P04', 'P05'= 'P05', 'P06' = 'P06', 'P07' = 'P07'
 }
 
 enum RequestType {
-  'TW3CM', 'W1EM', 'W2CM', 'W3PM', 'W4IM'
+  'TW3CM'='TW3CM', 'W1EM' = 'W1EM', 'W2CM' = 'W2CM', 'W3PM' = 'W3PM', 'W4IM' = 'W4IM'
 }
 

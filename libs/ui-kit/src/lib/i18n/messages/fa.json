@@ -24,10 +24,12 @@
   "GENERAL.CODE": "کد",
   "GENERAL.NAME": "نام",
   "GENERAL.GOODS": "کالا",
+  "GENERAL.DEPARTMENT": "اداره",
   "GENERAL.TITLE": "تیتر",
   "GENERAL.LOCATION": "مکان",
   "GENERAL.SKILL": "مهازت",
   "GENERAL.ACTIVITY": "فعالیت",
+  "GENERAL.CREATED_AT": "زمان ایجاد",
 
   "ASSETS.ASSET": "تجهیز",
   "ASSETS.ASSETS": "تجهیزات",
@@ -187,13 +189,18 @@
 
 
   "JOBS.ASSET": "تجهیز",
+  "JOBS.DAMAGE": "خرابی",
   "JOBS.IMPORTANCE_TYPE": "اولویت",
   "JOBS.REQUEST_TYPE": "نوع درخواست",
-
+  "JOBS.PLANNING_END_TIME": "زمان پایان",
+  "JOBS.PLANNING_START_TIME": "زمان شروع",
 
   "JOBS.JOB_REQUEST.ADD": "افزودن درخواست کار",
   "JOBS.JOB_ORDER.ADD": "افزودن دستور کار",
 
   "JOBS.JOB_REQUEST.EDIT": "ویرایش درخواست کار",
-  "JOBS.JOB_ORDER.EDIT": "ویرایش دستور کار"
+  "JOBS.JOB_ORDER.EDIT": "ویرایش دستور کار",
+
+
+  "JOBS.JOB_ORDER.TYPE": "نوع دستور کار"
 }

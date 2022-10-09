@@ -1,14 +1,5 @@
-import {withAsyncSelect, withInput, withSelect} from "@emms/ui-kit";
+import {withAsyncSelect2, withInput} from '@emms/ui-kit';
+import {getAsyncRequestType} from "./service";
 
-const getAsyncValues = async (q: string) => {
-  return [
-    {name:'TW3CM', id:"0"},
-    {name:'W1EM', id:"1"},
-    {name:'W2CM', id:"2"},
-    {name:'W3PM', id:"3"},
-    {name:'W4IM', id:"4"}];
-}
-const SelectRequestType = withInput(withSelect(getAsyncValues));
+const SelectRequestType = withInput(withAsyncSelect2(getAsyncRequestType));
 export {SelectRequestType}
-
-

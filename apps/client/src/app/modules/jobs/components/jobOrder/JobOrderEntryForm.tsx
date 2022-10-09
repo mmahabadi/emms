@@ -1,28 +1,16 @@
 import React, {FC, useEffect, useState} from "react";
-import * as yup from "yup";
-import {SubmitHandler, useForm} from "react-hook-form";
+import {useForm} from "react-hook-form";
 import {Activity} from "@emms/models";
-import {yupResolver} from "@hookform/resolvers/yup";
 import {useIntl} from "react-intl";
 import {
   Datepicker,
-  mapFormValues,
   ModalFormContainer,
   setFormValues,
-  TextInput,
   useAppState,
   useModalConfig
 } from "@emms/ui-kit";
-import {ActivitiesFormArray, SelectOrg} from "../../../../helpers";
-import {saveActivity, saveGoods} from "../../../setting/core/services";
+import {SelectOrg} from "../../../../helpers";
 import {v4 as uuidv4} from "uuid";
-import {ActivityList} from "../../../setting/components/activity/ActivityList";
-import {SelectActivity} from "../../../../helpers/components/SelectActivity/SelectActivity";
-import Table from 'react-bootstrap/Table';
-import { CloudPlus } from 'react-bootstrap-icons';
-import {SelectGoods} from "../../../../helpers/components/SelectGoods/SelectGoods";
-import {SkillFormArray} from "../../../../helpers/components/Activities/SkillFormArray";
-import {SkillOnlyFormArray} from "../../../../helpers/components/Activities/SkillOnlyFormArray";
 import {GoodsFormArray} from "../../../../helpers/components/SelectGoods/GoodsFormArray";
 import {saveJobOrder} from "../../core/services";
 import {SelectDepartment} from "../../../../helpers/components/SelectDepartment/SelectDepartment";
@@ -76,7 +64,7 @@ export const JobOrderEntryForm: FC = () => {
         </div>
         <div className="col-lg-6">
           <Datepicker
-            label="GENERAL.PLANNING_START_TIME"
+            label="JOBS.PLANNING_START_TIME"
             name="planningStartTime"
             required={true}
             showValidation={true}
@@ -84,7 +72,7 @@ export const JobOrderEntryForm: FC = () => {
         </div>
         <div className="col-lg-6">
           <Datepicker
-            label="GENERAL.PLANNING_END_TIME"
+            label="JOBS.PLANNING_END_TIME"
             name="planningEndTime"
             required={true}
             showValidation={true}

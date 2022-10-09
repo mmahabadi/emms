@@ -1,8 +1,6 @@
 import React, {FC, useEffect, useState} from "react";
-import * as yup from "yup";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {Activity} from "@emms/models";
-import {yupResolver} from "@hookform/resolvers/yup";
 import {useIntl} from "react-intl";
 import {
   Datepicker,
@@ -13,11 +11,12 @@ import {
   useAppState,
   useModalConfig
 } from "@emms/ui-kit";
-import {ActivitiesFormArray, SelectAsset, SelectOrg} from "../../../../helpers";
+import {SelectAsset, SelectOrg} from "../../../../helpers";
 import {v4 as uuidv4} from "uuid";
-import {saveJobOrder, saveJobRequest} from "../../core/services";
-import {SelectImportanceType} from "../../../../helpers/components/Enum/ImportanceType";
+import {saveJobRequest} from "../../core/services";
 import {SelectRequestType} from "../../../../helpers/components/Enum/RequestTypeType";
+import {SelectImportanceType} from "../../../../helpers/components/Enum/ImportanceType";
+import {SelectDamage} from "../../../../helpers/components/SelectDamage/SelectDamage";
 
 // const formSchema = yup.object().shape({
 //   org: yup.object().required(),
@@ -83,6 +82,27 @@ export const JobRequestEntryForm: FC = () => {
           <SelectRequestType
             label="JOBS.REQUEST_TYPE"
             name='requestType'
+            required={true}
+            form={form}/>
+        </div>
+        <div className="col-lg-6">
+          <SelectDamage
+            label="JOBS.DAMAGE"
+            name='damage'
+            required={true}
+            form={form}/>
+        </div>
+        <div className="col-lg-6">
+          <Datepicker
+            label="JOBS.REQUEST_DATE"
+            name='requestDate'
+            required={true}
+            form={form}/>
+        </div>
+        <div className="col-lg-6">
+          <Datepicker
+            label="JOBS.CREATED_AT"
+            name='createAt'
             required={true}
             form={form}/>
         </div>

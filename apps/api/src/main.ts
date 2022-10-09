@@ -18,12 +18,13 @@ async function bootstrap() {
         .setVersion('1.0')
         .build();
 
-  const document = SwaggerModule.createDocument(app, swaggerConfig);
-    SwaggerModule.setup('api', app, document);
-
   const globalPrefix = process.env.NX_API_PREFIX || 'api';
   app.setGlobalPrefix(globalPrefix);
   app.enableCors();
+
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+    SwaggerModule.setup('api', app, document);
+
 
   const port = process.env.NX_API_PORT || 3333;
   await app.listen(port);

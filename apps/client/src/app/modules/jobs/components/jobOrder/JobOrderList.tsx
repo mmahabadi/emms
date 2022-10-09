@@ -14,10 +14,9 @@ export const JobOrderList: FC = () => {
   }, []);
 
   const columns = [
-    { Header: 'GENERAL.ASSET', accessor: 'asset'},
-    { Header: 'GENERAL.PRIORITY', accessor: 'priority'},
-    { Header: 'GENERAL.TYPE', accessor: 'type'},
-    { Header: 'GENERAL.DATE', accessor: 'date'}
+    { Header: 'JOBS.PLANNING_START_TIME', accessor: 'planningStartTime'},
+    { Header: 'JOBS.PLANNING_END_TIME', accessor: 'planningEndTime'},
+    { Header: 'GENERAL.DEPARTMENT', accessor: 'department.name'},
   ] as DataTableColumn[];
 
   const toolbar = [
